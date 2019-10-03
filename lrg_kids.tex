@@ -61,9 +61,9 @@
 \newcommand{\mi}{m_{i}}
 \newcommand{\dense}{\mathtt{dense}}
 \newcommand{\lum}{\mathtt{luminous}}
-\newcommand{\dk}{\boldsymbol{\gamma}_{\alpha}^{(k)}}
+\newcommand{\dk}{\boldsymbol{w}_{g}^{(k)}}
 \newcommand{\dg}{\boldsymbol{\gamma}_{t}}
-\newcommand{\dbar}{\overline{\boldsymbol{\gamma}_{\alpha}}}
+\newcommand{\dbar}{\overline{\boldsymbol{w}_{g}}}
 \newcommand{\njk}{N_{\rm JK}}
 \newcommand{\healpix}{\mathtt{HEALPIX}}
 
@@ -147,23 +147,37 @@ Finally, we summarize and conclude in Section~\ref{sec:summary}.
 
 \subsection{KiDS photometric data}\label{sec:kids}
 The Kilo-degree Survey (KiDS, \citealt{kids}) is a wide 
-imaging survey conducted with the OmegaCAM camera (\citealt{omegacam}) which is mounted on the VLT Survey Telescope (\citealt{vst}). This survey uses four broad-band filters ($ugri$) in the optical wavelengths. KiDS targets approximately 1350 deg$^2$ of the sky in two regions, one on the celestial equator and the other one in the South Galactic cap.
+imaging survey conducted with the OmegaCAM camera (\citealt{omegacam}) which is mounted on the VLT Survey Telescope (\citealt{vst}). This survey uses four broad-band filters ($ugri$) in the optical wavelengths. KiDS has targeted approximately 1350 deg$^2$ of the sky in two regions, one on the celestial equator and the other one in the South Galactic cap. 
 
-The KiDS data that we use in this work\footnote{The latest KiDS data release is DR4 \citep{kuijken2019}, it however appeared after the present work had been finished.} is the third data release (DR3, \citealt{kids_dr3}) which covers $\sim 450$ deg$^{2}$ of the sky with 5$\sigma$ depth of 24.3, 25.1, 24.9, 23.8 in $2$ arcsec apertures in the $ugri$ bands respectively. For a thorough description of the KiDS data processing, we refer the readers to the data release paper (\citealt{kids_dr3}). The discussion of KiDS data below will fully refer to DR3; we note that some changes in the data processing pipeline have been made since and they are described in the DR4 paper by \cite{kuijken2019}.
+KiDS broadband photometry in the optical is supplemented by the VISTA Kilo degree Infrared Galaxy (VIKING) survey (\citealt{irwin2004,lewis2010,Edge2013,Gonz2018}). The VIKING observations of nearly the same regions with the near infrared filters $ZYJHK_{s}$ significantly increase the wavelength coverage of KiDS, turning the KiDS dataset into a unique wide-field optical+NIR catalog suitable for cosmological analysis.
 
-The KiDS database includes magnitudes derived by SExtractor (\citealt{sextractor}) such as \texttt{ISO} and \texttt{AUTO}. These magnitudes are determined directly from images with a variety of PSF values, they are therefore not optimal for our purposes where colours independent of such variations are needed. The KiDS data reduction involves however a post-processing procedure in which Gaussian Aperture and PSF (GAaP,~\citealt{gaap}) magnitudes are derived (\citealt{kuijken2015}). This procedure is performed in the following way. First, the PSF is homogenized across each individual coadd. Afterwards, a Gaussian-weighted aperture is used to measure the photometry. The size and shape of the aperture is determined by the object's length of the major axis, its length of the minor axis, and its orientation, all measured in the $r$-band. This procedure provides a set of magnitudes for all filters. 
+In this work we use the fourth KiDS data release (KiDS DR4 \citealt{kuijken2019}) which covers $1006$ deg$^{2}$ of the sky in 1006 tiles superseding the 440 tiles released in KiDS DR3 (\citealt{kids_dr3}). Reduction of the $ugri$ images was performed with the AstroWise pipeline (\citealt{omegacam}).  
+
+
+The achieved 5$\sigma$ limiting AB magnitudes of the survey are 24.3, 25.1, 24.9, 23.8 in $2$ arcsec apertures in the $ugri$ bands respectively. For a thorough description of the KiDS data processing, we refer the readers to the data release paper (\citealt{kuijken2019}). 
+
+The KiDS database includes magnitudes in the $r$-band derived by SExtractor (\citealt{sextractor}) such as \texttt{ISO} and \texttt{AUTO}. These magnitudes are determined directly from images with a variety of PSF values, they are therefore not optimal for our purposes where colours independent of such variations are needed. The KiDS data reduction involves however a post-processing procedure in which Gaussian Aperture and PSF (GAaP,~\citealt{gaap}) magnitudes are derived (\citealt{kuijken2015}). This procedure is performed in the following way. First, the PSF is homogenized across each individual coadd. Afterwards, a Gaussian-weighted aperture is used to measure the photometry. The size and shape of the aperture is determined by the object's length of the major axis, its length of the minor axis, and its orientation, all measured in the $r$-band. This procedure provides a set of magnitudes for all filters. 
 
 The magnitudes used in this work are the zeropoint-calibrated and foreground dust extinction-corrected magnitudes\footnote{In the final catalogue and for each band, the zeropoint offsets ($\mathtt{ZPT}_{-}\mathtt{offset}_{-}\mathtt{band}$) and the Galactic extinction corrections ($\mathtt{EXT}_{-}\mathtt{SFD}_{-}\mathtt{band}$) based on \citet{schlegel98} are provided in separate columns.} 
 denoted by $\; \mathtt{Mag}_{-}\mathtt{type}_{-}\mathtt{band}_{-}\mathtt{calib}$. 
 In this notation, $\mathtt{calib}$ refers to the zeropoint-calibrated and extiction corrected magnitudes. $\mathtt{type}$ refers to the type of the magnitude, such as GAaP, $\mathtt{AUTO}$, or $\mathtt{ISO}$ magnitudes. Furthermore, $\mathtt{band}$ refers to the photometric band under consideration (i.e. $ugri$). The default magnitudes in KiDS are GAaP magnitudes, which were designed to provide accurate colours but underestimate total fluxes of large galaxies. Total fluxes are, however, needed in our LRG selection procedure to derive luminosities (see section~\ref{sec:overview}). Therefore, whenever galaxy fluxes are needed, we use $\mathtt{Mag}_{-}\mathtt{AUTO}_{-}\mathtt{band}_{-}\mathtt{calib}$ in our red-sequence modelling. 
 
-For our choice of colour, GAaP colours are used as they have less scatter and bias than the colours derived from the $\mathtt{Mag}_{-}\mathtt{AUTO}_{-}\mathtt{band}_{-}\mathtt{calib}$ magnitudes. For the rest of this paper, we work with the calibrated $\mathtt{AUTO}$ magnitudes and GAaP colours. We emphasize that the GAaP procedure is intended to derive more accurate and less noisy estimates of colours for objects. In other words, the GAaP colours are less noisy than the colours estimated from the calibrated $\mathtt{AUTO}$ magnitudes ($\mathtt{Mag}_{-}\mathtt{AUTO}_{-}\mathtt{band}_{-}\mathtt{calib}$). We refer the readers to \citet{kuijken2015} and \citet{kids_dr3} for a more detailed discussion of the derivation of GAaP colours.
+For our choice of colour, GAaP colours are used as they have less scatter and bias than the colours derived from the $\mathtt{Mag}_{-}\mathtt{AUTO}_{-}\mathtt{band}_{-}\mathtt{calib}$ magnitudes. For the rest of this paper, we work with the calibrated $\mathtt{AUTO}$ $r$-band magnitude and GAaP colours. We emphasize that the GAaP procedure is intended to derive more accurate and less noisy estimates of colours for objects. In other words, the GAaP colours are less noisy than the colours estimated from the calibrated $\mathtt{AUTO}$ magnitudes ($\mathtt{Mag}_{-}\mathtt{AUTO}_{-}\mathtt{band}_{-}\mathtt{calib}$). We refer the readers to \citet{kuijken2015} and \citet{kids_dr3} for a more detailed discussion of the derivation of GAaP colours.
 
-The photometric catalogue is cleaned by removing the artefacts corresponding to any of the following masking flags: readout spike, saturation core, diffraction spike, secondary halo, or bad pixels. Furthermore, only objects for which photometric errors in all bands are provided, are kept in the final photometric catalogue (see \citet{kids_dr3} and \citet{radovich2017}). Finally, we require the final sample to not contain point-like objects by applying the cut $\mathtt{SG2DPHOT}=0$. This parameter is a KiDS star/galaxy classifier based on the $r$ band morphology, and it is equal to 0 for objects that are classified as galaxies.
+The nine-band photometric catalog is supplemented by a mask information
+which removes the satellite tracks and other imaging artefacts such as stellar halos from the images. In KiDS DR4, the masking is carried out at the sub-exposure level, increasing the effective area of the coadd images.
 
 \subsection{Spectroscopic data}\label{sec:spec}
 
-In this work, we exploit the overlap between the KiDS catalogue and a number of spectroscopic datasets for two purposes. First, we need a set of galaxies in the KiDS catalogue with spectroscopic redshifts that can be used as seeds for estimating the parameters of the red-sequence template. This procedure is explained in detail in section~\ref{sec:seed} and it is applied to the overlap between the KiDS photometry and spectroscopic catalogues of galaxies in GAMA (\citealt{driver2011}) and SDSS DR13 (\citealt{sdss_dr13}). Later, for testing the performance of the redshifts estimated for the selected LRGs in section~\ref{sec:performance} we make use of the overlap between KiDS and the spectroscopic redshifts from SDSS, GAMA, as well as 2dFLenS (\citealt{blake2016}).
+In~\citet{vakili2019} we made use of the spectroscopic data of SDSS DR13, GAMA, and 2dFLenS. 
+In addition to these data, we also take advantage of the KiDS deep field observation of the cosmos region, which overlaps with a number of spectroscopic campaigns such as zCOSMOS. 
+In the COSMOS field we utilize the GAMA-G10 COSMOS spectrocopic data, which encompasses a wider magnitude range, albeit a much narrower area than the other spectroscopic data considered in this work. In what follows, we describe the spectroscopic datasets.
+
+In this work, we exploit the overlap between the KiDS catalogue and a number of spectroscopic datasets. These datasets are used for the training and assessing the performance of the red-sequence template in selection and redshift estimation of LRGs.  
+This procedure is explained in detail in our previous work (\citealt{vakili2019}). 
+
+In addition to the datasets that we utilized in \citet{vakili2019}, we make use of the data
+and it is applied to the overlap between the KiDS photometry and spectroscopic catalogues of galaxies in GAMA (\citealt{driver2011}) and SDSS DR13 (\citealt{sdss_dr13}). Later, for testing the performance of the redshifts estimated for the selected LRGs in section~\ref{sec:performance} we make use of the overlap between KiDS and the spectroscopic redshifts from SDSS, GAMA, as well as 2dFLenS (\citealt{blake2016}).
 In what follows in the rest of this section, we provide a brief description of these spectroscopic catalogues.
 
 We note that in general the spectroscopic samples such as those used here are systematically  brighter than the photometric data from which we will be selecting the LRGs. This means that bright galaxies are oversampled in the calibration data with respect to the faint end. However, this is not an issue for the LRG selection procedure of Sec.~\ref{sec:methodology}: what is needed is to have red spectroscopic galaxies to calibrate the red sequence template (colour-magnitude relation), which is approximately a straight line at each redshift. Consequently, one can use a relatively bright spectroscopic sample to estimate the colour-magnitude relation for fainter red galaxies.
@@ -177,16 +191,27 @@ Galaxy And Mass Assembly (GAMA,~\citealt{driver2011}) is a spectroscopic survey 
 
 The Sloan Digital Sky Survey (SDSS, \citealt{york2000}) is a photometric and spectroscopic survey of $14,555$ deg$^2$ of the sky encompassing more than one third of the celestial sphere using a dedicated 2.5-m telescope (\citealt{gunn2006}). In particular, we make use of the spectroscopic dataset from the Data Release 13 (DR13, \citealt{sdss_dr13}) of the SDSS-IV project. We only use objects with class `GALAXY'. 
 
-The overlap between SDSS and KiDS in the equatorial fields above $\delta =-3$ ($\delta$ denotes the declination of objects on the sky) gives us $\sim 57,000$ SDSS spectroscopic galaxies with KiDS photometry. However those with $r<19.8$ are mostly included in GAMA, and after removing the latter we are left with nearly $43,000$ unique SDSS spectroscopic galaxies with KiDS photometry. 
+The overlap between SDSS and KiDS in the equatorial fields above $\delta =-3$ ($\delta$ denotes the declination of objects on the sky) gives us $\sim 99252$ SDSS spectroscopic galaxies with KiDS photometry. However those with $r<19.8$ are mostly included in GAMA, and after removing the latter we are left with nearly $43,000$ unique SDSS spectroscopic galaxies with KiDS photometry. 
 
 The SDSS-matched KiDS galaxies (after removing the overlap with GAMA) span higher redshifts than the GAMA-matched KiDS objects. This sample of galaxies mostly encompasses LRGs that are observed in the Baryonic Oscillation Spectroscopic Survey (BOSS, \citealt{dawson2013}) and the extended BOSS (eBOSS, \citealt{dawson2016}). This makes them ideal candidates for seed galaxies needed to estimate the red-sequence template as we seek to select galaxies that populate the same volume in the colour space as the SDSS LRGs do. 
 
 \subsubsection{2dFLenS}
 The 2-degree Field Lensing Survey (2dFLenS, \citealt{blake2016}) is a spectroscopic survey performed at the Australian Astronomical Observatory covering an area of 731 deg$^2$. By expanding the overlap with the KiDS field in the southern galactic cap, this survey aims to provide a dataset suitable for joint clustering and lensing analyses (\citealt{amon2018b,joudaki2018}), photometric redshift calibration (\citealt{johnson2017,wolf2017,kids_annz}), and lensing systematic tests (\citealt{amon2018a}).
 
-In KiDS DR3 there are nearly $12,000$ galaxies with 2dFLenS spectra. After excluding the galaxies in common with GAMA and SDSS, we have approximately $9,000$ unique 2dFLenS galaxies with KiDS photometry.
+In KiDS DR3 there are nearly $37461$ galaxies with 2dFLenS spectra. After excluding the galaxies in common with GAMA and SDSS, we have approximately $9,000$ unique 2dFLenS galaxies with KiDS photometry.
+
+\subsubsection{GAMA-G10}
+
+the Galaxy And Mass Assembly (GAMA) 10$^{\rm h}$ region (G10) (hereafter GAMA-G10) targets the data in the Cosmic Evolution Survey region (COSMOS). The GAMA-G10 consists of a curation and verification of approximately 16$k$ redshifts of bright galaxies in the COSMOS region (\citealt{davis2017}). Creation of this bright galaxy sample does not involve any target selection. All the 1$d$ and the 2$d$ spectra were process by the GAMA pipeline and were manually checked. Overall, the redshifts in this sample of bright galaxies are believed to be more robust than the redshifts obtained by the rest of the spectroscopic campaigns targeting the cosmos field \citep[e.g.][]{lily2009}.
 
 \section{Sample selection}\label{sec:selection}
+
+Several aspects of the selection procedure in this work are simillar to what has been outlined  in Vakili2019.  The main differences are the following. We include the VIKING Z band in the red-sequence temlpate. In principle, one can also include the rest of the YJHKs bandpasses of VIKING in the red-sequence modelling. However, we decided not include those bandpasses as they would increase computational cost of the red-sequence modeling which entails the following steps: Selection of a set of seed galaxies for estimaing the parameters of the red-sequence template, and eventually computing the conditional probability of color conditioned of the redsfhit and magnitudes of all the objects in the survey. 
+As we discussed in Section~\ref{sec:data}, we make use the apparent AUTO magnitude in the $r$-band which is provided in KiDS DR4  as $\mathtt{MAG \underscore AUTO}$. The AUTO magnitude quantities are not provided in the rest of the KiDS-VIKING bandpasses. As discussed in Section~\ref{sec:data}. We make use of the GAaP $\{u-g,g-r,r-i,i-Z\}$ colors, which provide a more precise proxy for the colors of galaxies (\citealt{kuijken2019}). 
+
+After evaluating $p(\boldsymbol{c}|m,z)$ and the red-sequence chi-squared $\chi^{2}_{\rm red}$, we proceed in a similar fashion as described in detail in \citet{vakili2019}. 
+
+
 \section{Survey systematics}\label{sec:systematic}
 
 We consider a range of photometric systematic with on-sky variations that can impact the variations of galaxy number densities in our selection of LRGs in KiDS DR4. In total we consider 13 survey properties that we further pixellize using $\healpix$. We produce the $\healpix$ map of these properties with $n_{\rm side} = 256$. Moreover, we consider the galactic extinction in the $r$-band, and the star number density in the survey footprint. In what follows, we list the set of systematic properties considered in our investigation:
@@ -247,7 +272,7 @@ We estimate the measurement uncertainties using the jackknife resampling method 
 In the jackknife method, the survey footprint is first divided into $N_{\mathrm{JK}}$ jackknife subregions of approximately equal area. 
 Then for each subregion $k\in\{1,...,N_{\mathrm{JK}}\}$, the clustering data vector $\boldsymbol{w}_{g}^{(k)} = \langle w^{(k)}_{g}\rangle$ is measured by cutting out the $k$-th subregion and estimating the clustering signal of the rest of the survey footprint. Note that $\boldsymbol{w}_{g}^{(k)}$ is a vector which contains the 2PCF in all angular bins considered in this study. The jackknife estimator of the covariance matrix is then given by:
 \be 
-C_{\rm JK, \alpha} = \frac{\njk - 1}{\njk}\sum_{k=1}^{\njk}\big(\dk-\dbar\big)^{T}\big(\dk-\dbar\big), 
+C_{\rm JK} = \frac{\njk - 1}{\njk}\sum_{k=1}^{\njk}\big(\dk-\dbar\big)^{T}\big(\dk-\dbar\big), 
 \label{eq:jk}
 \ee
 where $\dbar$ is the mean of all $\boldsymbol{w}_{g}^{(k)}$ vectors. 
