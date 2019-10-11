@@ -202,11 +202,11 @@ In KiDS DR3 there are nearly $37461$ galaxies with 2dFLenS spectra. After exclud
 
 \subsubsection{GAMA-G10}
 
-the Galaxy And Mass Assembly (GAMA) 10$^{\rm h}$ region (G10) (hereafter GAMA-G10) targets the data in the Cosmic Evolution Survey region (COSMOS). The GAMA-G10 consists of a curation and verification of approximately 16$k$ redshifts of bright galaxies in the COSMOS region (\citealt{davis2017}). Creation of this bright galaxy sample does not involve any target selection. All the 1$d$ and the 2$d$ spectra were process by the GAMA pipeline and were manually checked. Overall, the redshifts in this sample of bright galaxies are believed to be more robust than the redshifts obtained by the rest of the spectroscopic campaigns targeting the cosmos field \citep[e.g.][]{lily2009}.
+the Galaxy And Mass Assembly (GAMA) 10$^{\rm h}$ region (G10) (hereafter GAMA-G10) targets the data in the Cosmic Evolution Survey region (COSMOS). The GAMA-G10 consists of a curation and verification of approximately 16$k$ redshifts of bright galaxies in the COSMOS region (\citealt{davis2017}). Creation of this bright galaxy sample does not involve any target selection. All the 1d and the 2d spectra were process by the GAMA pipeline and were manually checked. Overall, the redshifts in this sample of bright galaxies are believed to be more robust than the redshifts obtained by the rest of the spectroscopic campaigns targeting the cosmos field \citep[e.g.][]{lily2009}.
 
 \section{Sample selection}\label{sec:selection}
 
-Several aspects of the selection procedure in this work are simillar to what has been outlined  in Vakili2019.  The main differences are the following. We include the VIKING $Z$ band in the red-sequence temlpate. In principle, one can also include the rest of the $YJHK_{\rm s}$ bandpasses of VIKING in the red-sequence modelling. However, we decided to exclude those bandpasses in the modelling as they would increase the computational cost of the following steps: $(i)$ selection of a set of seed galaxies for estimating the parameters of the red-sequence template, and eventually computing the conditional probability of color conditioned of the redsfhit and magnitudes of all the objects in the survey. 
+Several aspects of the selection procedure in this work are similar to what has been outlined  in~\citet{vakili2019}.  The main differences are the following. We include the VIKING $Z$ band in the red-sequence template. In principle, one can also include the rest of the $YJHK_{\rm s}$ bandpasses of VIKING in the red-sequence modelling. However, we decided to exclude those bandpasses in the modelling as they would increase the computational cost of the following steps: $(i)$ selection of a set of seed galaxies for estimating the parameters of the red-sequence template, and eventually computing the conditional probability of color conditioned of the redsfhit and magnitudes of all the objects in the survey. 
 
 As we discussed in Section~\ref{sec:data}, we make use the apparent AUTO magnitude in the $r$-band which is provided in KiDS DR4  as $\mathtt{MAG \underscore AUTO}$. The AUTO magnitude quantities are not provided in the rest of the KiDS-VIKING bandpasses. As discussed in Section~\ref{sec:data}. We make use of the GAaP $\{u-g,g-r,r-i,i-Z\}$ colors, which provide a more precise proxy for the colors of galaxies (\citealt{kuijken2019}). After evaluating $p(\boldsymbol{c}|m,z)$ and the red-sequence chi-squared $\chi^{2}_{\rm red}$, we proceed in a similar fashion as described in detail in \citet{rozo2016, vakili2019}. We construct two luminosity-threshold samples: the dense sample with $L>0.5 L_{\star}$ and a luminous sample with $L>L_{\star}$. 
 
@@ -214,20 +214,22 @@ In order to assess the purity of the two samples in the color space, we investig
 
 \section{Survey systematics}\label{sec:systematic}
 
+\subsection{Systematic parameters}
+
 We consider a range of photometric systematic with on-sky variations that can impact the variations of galaxy number densities in our selection of LRGs in KiDS DR4. In total we consider 13 survey properties that we further pixellize using $\healpix$. We produce the $\healpix$ map of these properties with $n_{\rm side} = 256$. Moreover, we consider the galactic extinction in the $r$-band, and the star number density in the survey footprint. In what follows, we list the set of systematic properties considered in our investigation:
 
 \begin{itemize}
 
-  \item \textbf{Limiting magnitudes in 9 band}: The limitting GAaP magnitude attributes are provided in DR4 as $\mathtt{MAG}\textunderscore{}\mathtt{LIM}\textunderscore{} \mathtt{band}$, where $\mathtt{band} = \{u,g,r,i,z,H,Y,J,K_{\rm s}\}$. This limitting magnitudes are measured for the optimal value of the minimum aperture setting $\mathtt{MIN}\textunderscore{}\mathtt{APER}$ in GAaP photometry. In each band, the limiting GAaP magnitudes correspond to the 1-$\sigma$ flux errors. 
+  \item \textbf{Limiting magnitudes in 9 band}: The limiting GAaP magnitude attributes are provided in DR4 as $\mathtt{MAG}\textunderscore{}\mathtt{LIM}\textunderscore{} \mathtt{band}$, where $\mathtt{band} = \{u,g,r,i,z,H,Y,J,K_{\rm s}\}$. This limiting magnitudes are measured for the optimal value of the minimum aperture setting $\mathtt{MIN}\textunderscore{}\mathtt{APER}$ in GAaP photometry. In each band, the limiting GAaP magnitudes correspond to the 1-$\sigma$ flux errors. 
   
   \item \textbf{PSF FWHM in the $r$-band}: the KiDS seeing FWHM in the $r$-band measured in units of arcseconds. The PSF FWHM is calculated using the follwoing catalog entries: $\mathtt{PSFe1}$, $\mathtt{PSFe2}$, and $\mathtt{PSF \textunderscore{} Strehl \textunderscore{} ratio}$.
-    \item \textbf{PSF ellipticity in the $r$-band}: the KiDS PSF ellipticity in the $r$-band. As discussed in \citet{kuijken2019}, both PSF ellipticity and the PSF FWHM in the $r$-band are small, allowing for benign imaging condition in the $r$-band which is used as the detection band in the KiDS photyometry pipeline. 
+    \item \textbf{PSF ellipticity in the $r$-band}: the KiDS PSF ellipticity in the $r$-band. As discussed in \citet{kuijken2019}, both PSF ellipticity and the PSF FWHM in the $r$-band are small, allowing for benign imaging condition in the $r$-band which is used as the detection band in the KiDS photometry pipeline. 
     The PSF ellipticity quantity is computed from the $\mathtt{PSFe1}$, $\mathtt{PSFe2}$
   \item \textbf{Detection threshold above background}: This quantity is measured in units of counts and it is provided in the single-band source list as $\mathtt{THRESHOLD}$. 
   \item \textbf{Background count in the THELI images}: The background counts at the centroid positions of the objects in the THELI-processed $r$-band detection images. In KiDS DR4, the background count is provided as $\mathtt{BACKGROUND}$. Note that the THELI processed detection images are background subtracted. The $\mathtt{BACKGROUND}$ parameter simply returns the value of the residual sky background at the positions of 
   objects.
   \item \textbf{Galactic dust extinction in the $r$-band}: This quantity is provided as $\mathtt{EXTINCTION\underscore{}r}$ in the nine-band catalog of KiDS DR4. The galactic extinction in the other bands are simply given by scaling of the extinction in the $r$-band.   
-  \item \textbf{Star number density}: We determine the the stellar density from the pixellized number density map of bright stars in the second data release of GAIA (GAIA DR2). This is done by taking the GAIA stars with the $G$-band magnitude between 12 and 17. This is the magnitude range in which the GAIA DR2 G-band is complete (\citealt{gaia0,gaia1}). Note that only GAIA DR2 stars that lie in the KiDS 9bandnoAWr mask are considered in the number density map making process. It is worth noting that a number of parameters in the KiDS DR4 catalog are dedicated to star-galaxy separation. These include the $\mathtt{CLASS\textunderscore{}STAR}$
+  \item \textbf{Star number density}: We determine the the stellar density from the pixellized number density map of bright stars in the second data release of GAIA (GAIA DR2). This is done by taking the GAIA stars with the $G$-band magnitude between 12 and 17. This is the magnitude range in which the GAIA DR2 G-band is complete (\citealt{gaia0,gaia1}). Note that only GAIA DR2 stars that lie in the KiDS $\mathtt{9bandnoAWr}$ mask are considered in the number density map making process. It is worth noting that a number of parameters in the KiDS DR4 catalog are dedicated to star-galaxy separation. These include the $\mathtt{CLASS\textunderscore{}STAR}$
  parameter which is an output of the source extractor software, the $\mathtt{SG2DPHOT}$ parameter which is an internal KiDS star-galaxy classifier \citep[e.g.][]{kids_dr3, radovich2017}, and lastly the $\mathtt{SG\textunderscore{}FLAG}$ parameter which is derived based on an estimate of the size-peakiness relation of objects. Note that we have already excluded objects in our sample that are classified as high confidence stars according to the parameters $\mathtt{SG2DPHOT}$ and $\mathtt{SG\textunderscore{} FLAG}$. However, in order to reduce any impact of possible imperfections in the star-galaxy classification on our systematic tests, we decide to use a systematic map constructed from an external GAIA DR2 catalog with a pure and compete sample of stars. 
  
 \end{itemize}
@@ -236,6 +238,10 @@ It is important to note that the systematic parameters considered in our investi
 Figure [fignum] demonstrates the correlation between various systematic parameters in the survey. 
 For instance, there is a strong correlation between the limiting magnitude in the u band and the the star number density. 
 
+
+\subsection{Galaxy number density variations due to systematics}
+
+In this section, we explore the variation of d
 
 \section{Galaxy Clustering}\label{sec:clustering}
 \subsection{Theory}
@@ -266,7 +272,7 @@ where $DD$ denotes the number of galaxy pairs within an angular separation bin c
 
 As discussed in Section~\ref{sec:systematic}, we have generated an organized random catalog for each galaxy sample which belongs to the tomographic bins defined in Section~\ref{sec:selection}. These organized random catalogs are designed such that they mimic the variations in the galaxy density that are due to on-sky variation of the survey systematic properties. In what follows in this section we compute the angular 2PCF for two sets of random points: one for the uniform randoms, and one for the organized randoms.
 
-Figure~\ref{fig:xi} shows the angular clustering measurements of LRG's at 4 tomographic bins, with the first three bins encompassing the galaxies in the dense sample and the last bin ($0.6<z<0.8$) encompassing the galaxies in the luminous sample. The clustering signal estimated using the uniform randoms is shown by the orange data points and the signal estimated using the organized randoms is shown by the blue data points. 
+Figure~\ref{fig:xi} shows the angular clustering measurements of LRGs at 4 tomographic bins, with the first three bins encompassing the galaxies in the dense sample and the last bin ($0.6<z<0.8$) encompassing the galaxies in the luminous sample. The clustering signal estimated using the uniform randoms is shown by the orange data points and the signal estimated using the organized randoms is shown by the blue data points. 
 
 We estimate the measurement uncertainties using the jackknife resampling method (\citealt{norberg2009,oliver2016,singh2017,shirasaki2017}). 
 In the jackknife method, the survey footprint is first divided into $N_{\mathrm{JK}}$ jackknife subregions of approximately equal area. 
