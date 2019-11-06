@@ -243,8 +243,14 @@ For instance, there is a strong correlation between the limiting magnitude in th
 
 In this section, we explore the variation of the observed galaxy density $n_{\rm gal}$ with respect to the systematic parameters $\{s_i\}_{i=1}^{N_{\rm sys}}$. We note that the variations in the observed number density as a result of survey inhomogeneity changes depends on the galaxy sample under study. 
 
-In order to quantify such systematic-induced variations, we make pixellized on-sky maps of survey properties using the healpix framework (\citealt{healpix}) \footnote{In particular, we use healpy (\citealt{healpy2019}) which is a python implementation of Healpix.}. Similar to the works of \citet{ross2017, rezaie2019}, we construct the pixellized maps with the resolution of $N_{\rm side} = 256$.
+In order to quantify such systematic-induced variations, we make pixellized on-sky maps of survey properties using the healpix framework (\citealt{healpix}) \footnote{In particular, we use healpy (\citealt{healpy2019}), a python library for handling and analyzing healpix maps.}. Similar to the works of \citet{ross2017, rezaie2019}, we construct the pixellized maps with the resolution of $N_{\rm side} = 256$.
 
+We note that indeed the survey properties induce variations in the 
+observed number density of galaxies, and that these variations depend on the galaxy sample under consideration. 
+
+For instance, for the first tomographic bin, we observe correlation between the $n_{\rm gal}$ and the following survey properties: stellar number density, PSF FWHM, Background counts, detection threshold, and the limiting magnitude in the reddest near-infrared bands, namely $J, H, K_{\rm s}$. 
+
+On the other hand, when considering the systematic correlation in the third tomographic bin ($0.45<z<0.6$)
 
 \section{Galaxy Clustering}\label{sec:clustering}
 \subsection{Theory}
@@ -255,7 +261,7 @@ For a given set of sample of galaxies with a linear bias parameter $b_g$ and red
 
 \begin{eqnarray}
 w_{g}(\theta) &=& b_g^2 \int \frac{l dl}{2\pi}J_{0}(l\theta)  \nonumber \\ 
-            &\times& \int d\chi_{\rm cov} \Big[\frac{n_{g}(z)dz/d\chi_{\rm cov}}{\chi_{\rm cov}}\Big]^{2}P_{\rm NL}\Big(k = \frac{l+1/2}{\chi_{\rm cov}}; \; z\Big),                  
+            &\times& \int d\chi_{\rm cov} \Big[\frac{n_{g}(z)\frac{dz}{d\chi_{\rm cov}}}{\chi_{\rm cov}}\Big]^{2}P_{\rm NL}\Big(\frac{l+1/2}{\chi_{\rm cov}}; \; z\Big),                  
 \label{eq:clustering_theory}
 \end{eqnarray}
 where $\chi_{\rm cov}$ is the comoving distance with a redshift dependence that is itself depend on the choice of cosmology. The term $P_{NL}$ is the analytical nonlinear power spectrum which can be calculated using different recipes  \citep[e.g. ][]{takahashi2012, emu2014,mead2015, smith2019}.
