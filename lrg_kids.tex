@@ -220,13 +220,19 @@ We consider a range of photometric systematic with on-sky variations that can im
 
 \begin{itemize}
 
-  \item \textbf{Limiting magnitudes in 9 band}: The limiting GAaP magnitude attributes are provided in DR4 as $\mathtt{MAG}\textunderscore{}\mathtt{LIM}\textunderscore{} \mathtt{band}$, where $\mathtt{band} = \{u,g,r,i,z,H,Y,J,K_{\rm s}\}$. This limiting magnitudes are measured for the optimal value of the minimum aperture setting $\mathtt{MIN}\textunderscore{}\mathtt{APER}$ in GAaP photometry. In each band, the limiting GAaP magnitudes correspond to the 1-$\sigma$ flux errors. 
+  \item \textbf{Limiting magnitudes in 9 band}: The limiting GAaP magnitude attributes are provided in DR4 as $\mathtt{MAG}\textunderscore{}\mathtt{LIM}\textunderscore{} \mathtt{band}$, where $\mathtt{band} = \{u,g,r,i,z,H,Y,J,K_{\rm s}\}$. 
+  For each band the limitting magnitudes are evaluated on an object-by-object basis. At the position of a given object, the limitting GAaP magnitude corresponds to the 1-$\sigma$ GAaP flux error for the aperture of the source. The aperture size is set the optimal value of the minimum aperture $\mathtt{MIN}\textunderscore{}\mathtt{APER}$ in GAaP photometry. Thus, it depends on the pixel noise---in the Gaussianized image where the GAaP flux is measured---as well as the aperture size. This implies that the limitting magnitudes are indirectly dependent on the full-width-at half-maximum of the point spread function in the bandpass as well as the sky background.   
   
-  \item \textbf{PSF FWHM in the $r$-band}: the KiDS seeing FWHM in the $r$-band measured in units of arcseconds. The PSF FWHM is calculated using the follwoing catalog entries: $\mathtt{PSFe1}$, $\mathtt{PSFe2}$, and $\mathtt{PSF \textunderscore{} Strehl \textunderscore{} ratio}$.
+  \item \textbf{PSF FWHM in the $r$-band}: the PSF FWHM in the $r$-band measured in units of arcseconds. The PSF FWHM is calculated using the fallowing catalog entries: $\mathtt{PSFe1}$, $\mathtt{PSFe2}$, and $\mathtt{PSF \textunderscore{} Strehl \textunderscore{} ratio}$.
+    
     \item \textbf{PSF ellipticity in the $r$-band}: the KiDS PSF ellipticity in the $r$-band. As discussed in \citet{kuijken2019}, both PSF ellipticity and the PSF FWHM in the $r$-band are small, allowing for benign imaging condition in the $r$-band which is used as the detection band in the KiDS photometry pipeline. 
     The PSF ellipticity quantity is computed from the $\mathtt{PSFe1}$, $\mathtt{PSFe2}$
+  
   \item \textbf{Detection threshold above background}: This quantity is measured in units of counts and it is provided in the single-band source list as $\mathtt{THRESHOLD}$. 
-  \item \textbf{Background count in the THELI images}: The background counts at the centroid positions of the objects in the THELI-processed $r$-band detection images. In KiDS DR4, the background count is provided as $\mathtt{BACKGROUND}$. Note that the THELI processed detection images are background subtracted. The $\mathtt{BACKGROUND}$ parameter simply returns the value of the residual sky background at the positions of 
+  
+  \item \textbf{Background count in the THELI images}: The background counts at the centroid positions of the objects in the THELI-processed $r$-band detection images. In KiDS DR4, the background count is provided as $\mathtt{BACKGROUND}$.  
+  
+  Note that the THELI processed detection images are background subtracted. The $\mathtt{BACKGROUND}$ parameter simply returns the value of the residual sky background at the positions of 
   objects.
   \item \textbf{Galactic dust extinction in the $r$-band}: This quantity is provided as $\mathtt{EXTINCTION\underscore{}r}$ in the nine-band catalog of KiDS DR4. The galactic extinction in the other bands are simply given by scaling of the extinction in the $r$-band.   
   \item \textbf{Star number density}: We determine the the stellar density from the pixellized number density map of bright stars in the second data release of GAIA (GAIA DR2). This is done by taking the GAIA stars with the $G$-band magnitude between 12 and 17. This is the magnitude range in which the GAIA DR2 G-band is complete (\citealt{gaia0,gaia1}). Note that only GAIA DR2 stars that lie in the KiDS $\mathtt{9bandnoAWr}$ mask are considered in the number density map making process. It is worth noting that a number of parameters in the KiDS DR4 catalog are dedicated to star-galaxy separation. These include the $\mathtt{CLASS\textunderscore{}STAR}$
@@ -246,7 +252,7 @@ In this section, we explore the variation of the observed galaxy density $n_{\rm
 In order to quantify such systematic-induced variations, we make pixellized on-sky maps of survey properties using the healpix framework (\citealt{healpix}) \footnote{In particular, we use healpy (\citealt{healpy2019}), a python library for handling and analyzing healpix maps.}. Similar to the works of \citet{ross2017, rezaie2019}, we construct the pixellized maps with the resolution of $N_{\rm side} = 256$.
 
 We note that indeed the survey properties induce variations in the 
-observed number density of galaxies, and that these variations depend on the galaxy sample under consideration. 
+observed number density of galaxies, and that these variations are to large degree consistent between different tomographic bins. 
 
 For instance, for the first tomographic bin, we observe correlation between the $n_{\rm gal}$ and the following survey properties: stellar number density, PSF FWHM, Background counts, detection threshold, and the limiting magnitude in the reddest near-infrared bands, namely $J, H, K_{\rm s}$. 
 
