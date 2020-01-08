@@ -299,7 +299,16 @@ C_{\rm JK} = \frac{\njk - 1}{\njk}\sum_{k=1}^{\njk}\big(\dk-\dbar\big)^{T}\big(\
 where $\dbar$ is the mean of all $\boldsymbol{w}_{g}^{(k)}$ vectors. 
 
 
-\subsection{Galaxy bias}
+\subsection{Inference setup}
+
+In order to fit the theoretical predictions of angular clustering to the measurements, we need to specify some choices. Assuming a fixed cosmology, we estimate the linear galaxy bias~(\ref{eq:clustering_theory}) of the red galaxies in the four different tomographic bins. These parameters are denoted by $\{b^{(1)}_g, \; b^{(2)}_g, \; b^{(3)}_g, \; b^{(4)}_g\}$. Furthermore, we keep our estimates of the photometric redshift distributions fixed. That is, we do not marginalize over photo-$z$ uncertainties. In our future 3x2pt analysis however, we will jointly constrain the cosmological parameters, linear galaxy bias, as well as photometric redshift uncertainties of our sample. 
+
+Furthermore, we choose a flat LCDM model assuming $\Omega_m = 0.25, \;\Omega_{\Lambda} = 0.75, \; \Omega_b = 0.044, \; \sigma_{8} = 0.8, \; n_s = 0.95, \; h = 0.7$. Our choice is consistent with the MICE suite of cosmological simulations (\citealt{MICE1}) which itself is consistent with the best-fit flat LCDM cosmology given the WMAP5 data (\citealt{WMAP5}). 
+
+In order to avoid confirmation bias we adopt the blinding scheme introduced in (\citealt{sellentin2019}). In this approach the blinded element of the inference pipeline is the inverse covariance matrix as oppsed to the data products (see for example \citealt{hendrick2017, hendrik2018}). The estimated inverse covariance matrix is changed by multiplication of a diagonal matrix to the Cholesky decomposition of the estimated inverse covariance matrix. The diagonal matrix is chosen such that the posterior distributions derived from the new inverse covariance matrix are shifted with the respect to those derived from the fiducial coavariance matrix. 
+
+The theoretical model summarized in equation~\ref{eq:clustering_theory} fails to capture the full complexity of galaxy-matter connection on small scales as it relies only on a simple linear deterministic treatment of galaxy bias. Therefore, we decide to apply a conservative cut on the comoving scales considered in our theoretical fittings. In particular, we adopt a cut at a comving scale of 8 $\mathrm{Mpc}h^{-1}$ which translates to the minimum angular scale (hereafter denoted by $\theta_{\rm min}$) of 30 arcmin for the first bin, 18.4 arcmin for the second bin, 14 arcmin for the third bin, and finally 11 arcmin for the last tomographic bin. The comoving distance is converted to angular scales assuming the flat LCDM cosmology discussed shortly above. Furthermore, the parameter $\theta_{\rm min}$ in each tomographic bin is calculated from the comoving distance at the mean redshift of the bin.
+
 \section{Summary}\label{sec:summary} 
 
 
