@@ -96,10 +96,7 @@ $^{1}$Leiden Observatory, Leiden University, Leiden, Netherlands
 % Abstract of the paper
 \begin{abstract}
 
-We present a sample of luminous red-sequence galaxies for studying the large-scale structure in the Kilo-Degree Survey (KiDS). The selected galaxies are well-described by a red-sequence template, a data-driven model of the color-magnitude relation as a function of redshift. In this work, the red-sequence template is calibrated using the broad-band optical+NIR photometry of KiDS-VIKIING and the overlapping spectroscopic datasets.    
-The selection process involves estimating the red-sequence redshifts, their corresponding uncertainties, assessment of the purity of the sample, and the redshift distributions in tomographic bins.
-
-Then we inspect the correlation between the number density of these galaxies and the survey systematic properties such as varying depth. These systematic correlations are mitigated by generation of non-uniform random point catalogs using self organizing maps. Finally, we measure the angular two-point correlation function of these galaxies in tomographic bins and we provide theoretical fits to these measurements. 
+We present a sample of luminous red-sequence galaxies for studying the large-scale structure in the Kilo-Degree Survey fourth data release. The selected galaxies are well-described by a red-sequence template, a data-driven model of the color-magnitude relation as a function of redshift. In this work, the red-sequence template is calibrated using the broad-band optical+NIR photometry of KiDS-VIKIING and the overlapping spectroscopic datasets. The selection process involves estimating the red-sequence redshifts, their corresponding uncertainties, assessment of the purity of the sample, and computing the redshift distributions in tomographic bins. Then we inspect the correlation between the observed number density of these galaxies and the survey properties. In order to tackle these systematic dependencies, We provide a recipe based on reweighting the galaxies. Subsequently, we measure the angular two-point correlation function of these galaxies in tomographic bins. Finally, we estimate the linear bias of these galaxies in a blind fashion. 
 
 \end{abstract}
 
@@ -117,20 +114,19 @@ galaxies: distances and redshifts, gravitational lensing: weak, methods: data an
 
 The Kilo Degree Survey (KiDS) is an optical galaxy survey primarily designed to map the large scale structure by studying the weak gravitational lensing of galaxies (\citealt{kuijken2015, kuijken2019}). This is done by measuring the correlation between the distortion of the shapes of distant galaxies (\citealt{hendrick2017,hendrik2018}). These correlations are then compared to the predictions of cosmological simulations to test cosmological models (\citealt{heymans2013,jee2016,hendrick2017,joudaki2017,troxel2017,joudaki2019, hikage2019}). 
 
-However, the full constraining potential of weak lensing studies can only be realized through joint 
-analysis of the cosmic shear of back ground galaxies and the positions of foreground galaxies with robust distance estimates. This involves measuring the correlation between the cosmic shear estimates of the background galaxies, the correlation between the positions of foreground galaxies, and eventually the cross-correlation between the cosmic shear of background galaxies and the positions of foreground galaxies (\citealt{cacciato2013, cosmolike, des_y1_cosmology, elvin2017, edo2018, prat2017}). 
+However, the full constraining potential of weak lensing studies can only be realized through the joint analysis of the cosmic shear of back ground galaxies and the positions of foreground galaxies with robust distance estimates. This involves measuring the correlation between the cosmic shear estimates of the background galaxies, the correlation between the positions of foreground galaxies, and eventually the cross-correlation between the cosmic shear of background galaxies and the positions of foreground galaxies (\citealt{cacciato2013, cosmolike, des_y1_cosmology, elvin2017, edo2018, prat2017}). 
 
-The advantages of such combined analyses are two-folded: obtaining tighter constraints on cosmological parameters and the possible extensions to the standard model of cosmology, and providing a venue for mitigation of a range of observational and systematic uncertainties such as intrinsic alignments and the photometric redshift uncertainties (\citealt{edo2016, joudaki2018, sam2019}).
+The advantages of such combined analyses are two-folded: obtaining tighter constraints on cosmological parameters and the possible extensions to the standard model of cosmology, and offering a venue for mitigation of a range of observational and theoretical uncertainties such as photometric redshift uncertainties and intrinsic alignments (\citealt{edo2016, joudaki2018, sam2019}). In this work, we focus on selection of a sample of galaxies with robust estimates of redshift as well as measuring their angular two-point correlation function in slices of redshift. 
 
-Following the work of \citet{vakili2019} we construct a galaxy sample with robust photometric redshifts by taking advantage of the properties of galaxies with old stellar populations. At any given redshift, the distribution of these galaxies in the colour-magnitude diagram follows a straight line --- with some intrinsic scatter --- known as the red-sequence ridge-line \citep[e.g.][]{bower1992,ellis1997,gladders1998,stanford1998}. Therefore, these galaxies are called the red-sequence galaxies. 
+Following the work of \citet{vakili2019} we construct a sample of red-sequence galaxies by taking advantage of the fact that at any given redshift, the distribution of these galaxies in the colour-magnitude space follows a straight line --- with some intrinsic scatter --- known as the red-sequence ridge-line \citep[e.g.][]{bower1992,ellis1997,gladders1998,stanford1998}. 
 
-The redshift-dependent distribution of the red-sequence galaxies in the colour-magnitude diagram permits us to select these galaxies with the broad-band photometry of the imaging surveys (\citealt{gladders_yee2000,hao2009,redmap_sdss,rozo2016,elvin2017,oguri2018,vakili2019}). Th data-driven model of the color-magnitude relation of the red-sequence galaxies as a function of redshift is called the red-sequence template.
+The redshift-dependent distribution of the red-sequence galaxies in the colour-magnitude space allows us to select these galaxies with the broad-band photometry of the imaging surveys (\citealt{gladders_yee2000,hao2009,redmap_sdss,rozo2016,elvin2017,oguri2018,vakili2019}). This can be achived with a data-driven model of the color-magnitude relation of the red-sequence galaxies as a function of redshift. In this work, we construct this data-driven model with the multi-band photometry of the KiDS DR4 (\citealt{kuijken2019}). In particular, we make use of the KiDS OmegaCAM $ugri$ optical bandpasses as well as the VIKING $Z$ bandpass.  
 
-In this work, we select a set of red-sequence galaxies from the multi-band photometry of the KiDS DR4 (\citealt{kuijken2019}). 
+The model is calibrated with a set of spectroscopic redshifts obtained by four spectroscopic datasets, including SDSS DR13 (\citealt{sdss_dr13}), GAMA (\citealt{driver2011}), 2dFLenS (\citealt{blake2016}), and the GAMA reanalysis of the redshifts in G10-COSMOS region (hereafter G10-COSMOS \citealt{davis2015}). 
 
-The selected galaxies are well-described by the red-sequence template, which itself, is calibrated with a set of spectroscopic redshifts obtained by four spectroscopic datasets, including SDSS DR13 (\citealt{sdss_dr13}), GAMA (\citealt{driver2011}), 2dFLenS (\citealt{blake2016}), and the GAMA reanalysis of the redshifts in G10-COSMOS region (hereafter G10-COSMOS \citealt{davis2015}). Following the $\textsc{redMagiC}$ prescription (\citealt{rozo2016}), we impose a set of luminosity cuts and constant comoving densities, and we construct two samples of luminous red galaxies suitable for galaxy clustering and galaxy-galaxy lensing measurements. We call the sample with the lower (higher) luminosity threshold, the dense (luminous) sample.
+Following the $\textsc{redMagiC}$ prescription (\citealt{rozo2016}), we impose a set of luminosity cuts and constant comoving densities, and we construct two samples of luminous red galaxies suitable for galaxy clustering and galaxy-galaxy lensing measurements. The main differences between the method described in this work and the previous work of \citet{vakili2019} are: the inclusion of the VIKING $Z$-band magnitudes in the red-sequence template, and the inclusion of the G10-COSMOS in spectroscopic calibration of the model. We also use the VIKING $K_{\rm s}$ band to assess the purity of the sample selected based on the red-sequence template.  
 
-The only difference between the method described in this work and the previous work of \citet{vakili2019} is the inclusion of the VIKING $Z$-band magnitudes in the red-sequence template. It is worth noting that while the $\textsc{redMagiC}$ algorithm relies on the redMapper \citealt{redmap_des} to calibrate the red-sequence template\footnote{Building the red-sequence template of the redMapper algorithm itself relies on spectroscopic data \citealt{redmap_sdss}}, we make use of the significant overlap of the KiDS DR4 data with external spectroscopic datasets. 
+
 
 Furthermore, we make use of the VIKING $K_{\rm s}$-band magnitudes to investigate the purity of the selected samples with different luminosity thresholds. Given the purity of the samples and the variable depth of the survey, we choose the redshift reaches of the dense and the luminous samples. The redshift reach of each sample is chosen such that the sample remains nearly pure and nearly volume-limited below that redshift. Afterwards, we divide the galaxy sample into four tomographic redshift bins between 0.15 and 0.8, with the first three redshift bins comprising the dense galaxy sample and the last bin consisting of the galaxies in the luminous sample. 
 
@@ -268,7 +264,36 @@ For instance, there is a strong correlation between the limiting magnitude in th
 \includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation3.png}
 \includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation5.png}
 \end{tabular}
-\caption{\label{fig:sys_correlation} Demonstration of the covariance between the survey properties. The anti-correlation between the Background counts in the coadds and the stellar number density is evident.  } 
+\caption{\label{fig:sys_correlation} Demonstration of the non-negligible covariance between the survey properties. The anti-correlation between the Background counts in the coadds and the stellar number density is evident (\textit{Top Right}). Furthermore, we note the anti-correlation between the magnitude limit in the $u$-band (\textit{Top Right}), anti-correlation between the detection threshold and the star number density (\textit{Bottom Left}), and the magnitude limit in the $u$-band and the star number density (\textit{Bottom Right}).} 
+\end{figure*}
+
+
+\begin{figure*}
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_0_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_2_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_3_poly_1.png}
+\end{tabular}
+
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_0_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_3_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_8_poly_1.png}
+\end{tabular}
+
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_1_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_5_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_6_poly_1.png}
+\end{tabular}
+
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_0_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_4_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_5_poly_1.png}
+\end{tabular}
+
+\caption{\label{fig:sys_correlation} Demonstration of the correlation between the galaxy number densities and the principal components of the survey properties before (shown in orange) and after the application of systematic weights (shown in blue). The panels from top to bottom show the systematic correlation in the $0.15<z_{\rm red}<0.3$, $0.3<z_{\rm red}<0.45$, $0.45<z_{\rm red}<0.6$, $0.6<z_{\rm red}<0.8$ tomographic bins respectively. In each row, a subset of principal components that exhibit considerable correlation with the observed number densities are shown.} 
 \end{figure*}
 
 
