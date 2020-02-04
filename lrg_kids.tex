@@ -202,9 +202,13 @@ the Galaxy And Mass Assembly (GAMA) 10$^{\rm h}$ region (G10) (hereafter GAMA-G1
 
 \section{Sample selection}\label{sec:selection}
 
-Several aspects of the selection procedure in this work are similar to what has been outlined  in~\citet{vakili2019}.  The main differences are the following. We include the VIKING $Z$ band in the red-sequence template. In principle, one can also include the rest of the $YJHK_{\rm s}$ bandpasses of VIKING in the red-sequence modelling. However, we decided to exclude those bandpasses in the modelling as they would increase the computational cost of the following steps: $(i)$ selection of a set of seed galaxies for estimating the parameters of the red-sequence template, and eventually computing the conditional probability of color conditioned of the redsfhit and magnitudes of all the objects in the survey. 
+Several aspects of the selection procedure in this work are similar to what has been outlined  in~\citet{vakili2019}. In what follows we describe the main distinctions. Previously, we only took advantage of the KiDS optical photometry for our red-sequence model. In this work, we also include the VIKING $Z$ band in the red-sequence template. This allows the complexity of our model to be similar to that of~\citet{rozo2016} with the exception of the presence of the $u$ band.
 
-As we discussed in Section~\ref{sec:data}, we make use the apparent AUTO magnitude in the $r$-band which is provided in KiDS DR4  as $\mathtt{MAG \underscore AUTO}$. The AUTO magnitude quantities are not provided in the rest of the KiDS-VIKING bandpasses. As discussed in Section~\ref{sec:data}. We make use of the GAaP $\{u-g,g-r,r-i,i-Z\}$ colors, which provide a more precise proxy for the colors of galaxies (\citealt{kuijken2019}). After evaluating $p(\boldsymbol{c}|m,z)$ and the red-sequence chi-squared $\chi^{2}_{\rm red}$, we proceed in a similar fashion as described in detail in \citet{rozo2016, vakili2019}. We construct two luminosity-threshold samples: the dense sample with $L>0.5 L_{\star}$ and a luminous sample with $L>L_{\star}$. 
+In principle, one can also include the rest of the $YJHK_{\rm s}$ bandpasses of VIKING in the red-sequence model. However, we decided to exclude those bands in the modelling as they would increase the computational cost of the following steps: Selection of a set of seed galaxies (with spectroscopic redshifts) for estimating the parameters of the red-sequence template, and eventually computing the conditional probability of colors conditioned on the redsfhit and magnitudes for all the objects in the survey. 
+
+As we discussed in Section~\ref{sec:data}, we make use the apparent AUTO magnitude in the $r$-band which is provided in KiDS DR4 as $\mathtt{MAG \underscore AUTO}$. The AUTO magnitude quantities are not provided in the rest of the KiDS-VIKING bandpasses. As discussed in Section~\ref{sec:data}, we make use of the GAaP $\{u-g,g-r,r-i,i-Z\}$ colors, which provide a more precise proxy for the colors of galaxies (\citealt{kuijken2019}). 
+
+After evaluating $p(\boldsymbol{c}|m,z)$ and the red-sequence chi-squared $\chi^{2}_{\rm red}$, we proceed in a similar fashion as described in detail in \citet{rozo2016, vakili2019}. We construct two luminosity-threshold samples: the dense sample with $L>0.5 L_{\star}$ and a luminous sample with $L>L_{\star}$. 
 
 In order to assess the purity of the two samples in the color space, we investigate the redshift-dependent distribution of galaxies in the $(r-Z, r-K_{s})$ space. In Figure~\ref{fig:star_galaxy_I}, we show the distribution of red-sequence galaxies and stars\footnote{selected from KiDS DR4 using $\mathtt{SG\underscore{}FLAG}= 0$} in this two-dimensional color space.  As apparent on the left panel of Figure~\ref{fig:star_galaxy_I}, the distribution of the colors of galaxies in the dense sample has significant overlap with the distribution of the colors of high confidence stars for $z>0.6$. On the other hand, there is more clear distinction between the color distribution of the luminous galaxies and that of the high confidence stars. 
 
@@ -240,10 +244,91 @@ It is important to note that the systematic parameters considered in our investi
 Figure [fignum] demonstrates the correlation between various systematic parameters in the survey. 
 For instance, there is a strong correlation between the limiting magnitude in the u band and the the star number density. 
 
+
+
 \begin{figure*}
-\includegraphics[width=\textwidth]{figures_tmp/sys/scatter_fwhm.png}
-\caption{\label{fig:scatter_fwhm} .} 
+\includegraphics[width=\textwidth]{figures_tmp/cosmos_color.png}
+\caption{\label{fig:cosmos_color}Distribution of the selected luminous red-sequence galaxies in 
+the color space as a function of redshift. The COSMOS-G10 galaxies are shown in red dots.} 
 \end{figure*}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures_tmp/cosmos_sersic.png}
+\caption{\label{fig:cosmos_sersic}Distribution of Sersic indices of LRG's in the COSMOS field.} 
+\end{figure}
+
+
+\begin{figure*}
+\begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/red_vs_star_dense.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/red_vs_star_lum.png}
+\end{tabular}
+\caption{\label{fig:star_galaxy_I} Demonstration of the use of optical+NIR colors for identification of likely stellar objects amongst the red-sequence galaxy candidate. Right Panel: At redshifts above $z_{\rm red}>0.4$ red-sequence galaxies (shown in red) and high confidence stars (shown in blue) reside in separated regions of the two-dimensional $(r-K_{\rm s}) \times (r-z)$ colors. Shown in pink dashed line is the support vector machine prediction of a boundary line between the two classes. The red-sequence candidates falling below the predicted boundary are marked by open circle and thus masked as likely stellar objects in the final catalog. Left Panel: Purity fraction of the dense  (green dashed line) and the luminous (orange dashed line) samples defined as the stellar contamination fraction subtracted from unity.} 
+\end{figure*}
+
+
+\begin{figure*}
+\begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/stars_SVM_lum.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/lrg_purity.png}
+\end{tabular}
+\caption{\label{fig:star_galaxy_II} Demonstration of the use of optical+NIR colors for identification of likely stellar objects amongst the red-sequence galaxy candidate. Right Panel: At redshifts above $z_{\rm red}>0.4$ red-sequence galaxies (shown in red) and high confidence stars (shown in blue) reside in separated regions of the two-dimensional $(r-K_{\rm s}) \times (r-z)$ colors. Shown in pink dashed line is the support vector machine prediction of a boundary line between the two classes. The red-sequence candidates falling below the predicted boundary are marked by open circle and thus masked as likely stellar objects in the final catalog. Left Panel: Purity fraction of the dense  (green dashed line) and the luminous (orange dashed line) samples defined as the stellar contamination fraction subtracted from unity.} 
+\end{figure*}
+
+
+\begin{figure*}
+ 
+ \begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_dense_zmax_0_6.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_lum_zmax_0_8.png}
+\end{tabular}
+\caption{\label{fig:maglim_g} Demonstration of the distributions of the GaAP magnitudes and the limiting magnitudes in the $g$-band for the dense sample (left panel) and the luminous sample (right panel). In both figures the pixellized distributions and contours are color-coded by the number counts. Note that the maximum redshifts of the two samples, $z_{\rm red}=0.6$ (dense) sample and $z_{\rm red}=0.8$ (luminous) sample are chosen such that the samples remain volume-limited and not limited by the varying depth of the survey (shown with the dashed orange line in both panels).} 
+\end{figure*}
+
+\begin{figure*}
+ 
+ \begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_1.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_2.png}
+\end{tabular}
+
+ \begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_3.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_4.png}
+\end{tabular}
+\caption{\label{fig:pz} The Blue histogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
+\end{figure*}
+
+
+%\begin{figure}
+%\includegraphics[width=\columnwidth]{figures_tmp/zerr_dist_2.png}
+%\caption{\label{fig:pz} The Blue hisogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
+%\end{figure}
+
+
+%\begin{figure}
+%\includegraphics[width=\columnwidth]{figures_tmp/nofz.png}
+%\caption{\label{fig:pz} Tomographic redshift distributions of our red galaxy sample in four bins: %$0.15<z_{\rm red}<0.3, \;0.3<z_{\rm red}<0.45, \;0.45<z_{\rm red}<0.6, \;0.6<z_{\rm red}<0.8$.
+% The redshift distributions of the lenses are estimated directly from the the individual red-sequence %redshift estimates and their corresponding uncertainties.} 
+%\end{figure}
+
+
+
+\begin{figure*}
+\begin{tabular}{cc}
+\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_1.png}
+\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_2.png}
+\end{tabular}
+\begin{tabular}{cc}
+\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_3.png}
+\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_4.png}
+\end{tabular}
+
+\caption{\label{fig:pz2} Tomographic redshift distributions of our red galaxy sample in four bins: $0.15<z_{\rm red}<0.3, \;0.3<z_{\rm red}<0.45, \;0.45<z_{\rm red}<0.6, \;0.6<z_{\rm red}<0.8$.
+ The redshift distributions are estimated from two methods: DIR redshift distributions are shown in blue and the stacked redshift probabilities are shown in orange.} 
+\end{figure*}
+
+
 
 \begin{figure*}
 \includegraphics[width=\textwidth]{figures_tmp/sys/scatter_BackGr.png}
@@ -396,45 +481,10 @@ The theoretical model summarized in equation~\ref{eq:clustering_theory} fails to
 \section*{Acknowledgements}
 
 
-\begin{figure*}
-\begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/red_vs_star_dense.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/red_vs_star_lum.png}
-\end{tabular}
-\caption{\label{fig:star_galaxy_I} Demonstration of the use of optical+NIR colors for identification of likely stellar objects amongst the red-sequence galaxy candidate. Right Panel: At redshifts above $z_{\rm red}>0.4$ red-sequence galaxies (shown in red) and high confidence stars (shown in blue) reside in separated regions of the two-dimensional $(r-K_{\rm s}) \times (r-z)$ colors. Shown in pink dashed line is the support vector machine prediction of a boundary line between the two classes. The red-sequence candidates falling below the predicted boundary are marked by open circle and thus masked as likely stellar objects in the final catalog. Left Panel: Purity fraction of the dense  (green dashed line) and the luminous (orange dashed line) samples defined as the stellar contamination fraction subtracted from unity.} 
-\end{figure*}
-
-
-\begin{figure*}
-\begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/stars_SVM_lum.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/purity}
-\end{tabular}
-\caption{\label{fig:star_galaxy_II} Demonstration of the use of optical+NIR colors for identification of likely stellar objects amongst the red-sequence galaxy candidate. Right Panel: At redshifts above $z_{\rm red}>0.4$ red-sequence galaxies (shown in red) and high confidence stars (shown in blue) reside in separated regions of the two-dimensional $(r-K_{\rm s}) \times (r-z)$ colors. Shown in pink dashed line is the support vector machine prediction of a boundary line between the two classes. The red-sequence candidates falling below the predicted boundary are marked by open circle and thus masked as likely stellar objects in the final catalog. Left Panel: Purity fraction of the dense  (green dashed line) and the luminous (orange dashed line) samples defined as the stellar contamination fraction subtracted from unity.} 
-\end{figure*}
 
 
 
-\begin{figure*}
- 
- \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_dense_zmax_0_6.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_lum_zmax_0_8.png}
-\end{tabular}
-\caption{\label{fig:maglim_g} Demonstration of the distributions of the GaAP magnitudes and the limiting magnitudes in the $g$-band for the dense sample (left panel) and the luminous sample (right panel). In both figures the pixellized distributions and countours are color-coded by the number counts. Note that the maximum redshifts of the two samples, $z_{\rm red}=0.6$ (dense) sample and $z_{\rm red}=0.8$ (luminous) sample are chosen such that the samples remain volume-limited and not limited by the varying depth of the survey (showin with the dashed orange line in both panels).} 
-\end{figure*}
 
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures_tmp/zerr_dist_2.png}
-\caption{\label{fig:pz} The Blue hisogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
-\end{figure}
-
-
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures_tmp/nofz.png}
-\caption{\label{fig:pz} Tomographic redshift distributions of our red galaxy sample in four bins: $0.15<z_{\rm red}<0.3, \;0.3<z_{\rm red}<0.45, \;0.45<z_{\rm red}<0.6, \;0.6<z_{\rm red}<0.8$.
- The redshift distributions of the lenses are estimated directly from the the individual red-sequence redshift estimates and their corresponding uncertainties.} 
-\end{figure}
 
 
 %\begin{figure*}
