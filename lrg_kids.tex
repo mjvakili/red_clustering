@@ -69,7 +69,7 @@
 
 %%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
 
-\title[KiDS LRGs]{Clustering of red-sequence galaxies in the fourth data release of the Kilo Degree Survey}
+\title[KiDS DR4 LRG clustering]{Clustering of red-sequence galaxies in the fourth data release of the Kilo Degree Survey}
 
 
 \author[M. Vakili et al.]{
@@ -202,6 +202,8 @@ the Galaxy And Mass Assembly (GAMA) 10$^{\rm h}$ region (G10) (hereafter GAMA-G1
 
 \section{Sample selection}\label{sec:selection}
 
+\subsection{Red-sequence model}
+
 Several aspects of the selection procedure in this work are similar to what has been outlined  in~\citet{vakili2019}. In what follows we describe the main distinctions. Previously, we only took advantage of the KiDS optical photometry for our red-sequence model. In this work, we also include the VIKING $Z$ band in the red-sequence template. This allows the complexity of our model to be similar to that of~\citet{rozo2016} with the exception of the presence of the $u$ band.
 
 In principle, one can also include the rest of the $YJHK_{\rm s}$ bandpasses of VIKING in the red-sequence model. However, we decided to exclude those bands in the modelling as they would increase the computational cost of the following steps: Selection of a set of seed galaxies (with spectroscopic redshifts) for estimating the parameters of the red-sequence template, and eventually computing the conditional probability of colors conditioned on the redshift and magnitudes for all the objects in the survey. 
@@ -212,14 +214,57 @@ After evaluating $p(\boldsymbol{c}|m,z)$ and the red-sequence chi-squared $\chi^
 
 For the luminous sample, we show the evolution of the GAaP colors with respect the estimated red-sequence redshifts in Figure~\ref{fig:cosmos_color}. We run our selection algorithm on the galaxies in the GAMA-G10 catalog. The selected red-sequence galaxies in GAMA-G10 are then used for the redshift calibration of the sample. In Figure~\ref{fig:cosmos_color}, the red points show the red-sequence galaxies with $L>L_{\star}$ in the GAMA-G10 COSMOS field. These galaxies are selected in a consistent manner and hence, they follow the redshift-dependent color distribution of the luminous red-sequence sample in KiDS DR4.
 
+Moreover, we are interested in the morphological properties of the selected sample. We match the selected red-sequence galaxies in the GAMA-G10 field with the Zurich Structure and Morphology Catalog (\citealt{scarlata2007, sargent2007}). This catalog contains the best-fit parameters of the Single-Sersic GIM2D model applied to the COSMOS ACS catalog. We extract the $\mathtt{SERSIC\_N\_GIM2D}$ column of this catalog which represents the best-fit Sersic index. In Figure~\ref{fig:cosmos_sersic} the distribution of the Seric indices of red-sequence galaxies in GAMA G10 is shown in orange while that of all galaxies in the Zurich catalog is shown in blue. It is clear that Sersic indices of the selected red galaxies in GAMA-G10 tend to have higher values, consistent with the picture that these galaxies are well described by a bulge-dominated morphology.
+
+\subsection{Purity and completeness}\label{sec:purity}
+
 We furthermore assess the purity of the sample by inspecting the distribution of the selected objects in the $(r-Z, r-K_{\rm s})$ space. 
-In particular we look at the distribution of the selected red-sequence galaxies and that of objects classified as high confidence star candidates in KiDS DR4. These star candidates are all the objects that meet this criterion: $\mathtt{SG\_FLAG}= 0$ \footnote{The $$\mathtt{SG\_FLAG}$$ parameter makes use of the size as well as the peakiness in order to determine whether a given object can be classified as star or not.}.
+In particular we look at the distribution of the selected red-sequence galaxies and that of objects classified as high confidence star candidates in KiDS DR4. These star candidates are all the objects that meet this criterion: $\mathtt{SG\_FLAG}= 0$ \footnote{The $\mathtt{SG\_FLAG}$ parameter makes use of the size-peakiness relation of objects in order to determine whether they can be classified as star or not.}.
 In Figure~\ref{fig:star_galaxy_I}, we show the distribution of red-sequence galaxies and high confidence stars in this two-dimensional color space. 
 The left(right) panel of figure~\ref{fig:star_galaxy_I} shows this purity test for the selected objects in the dense(luminous) sample. On the other hand, the contours show the 68\% and 95\% of the distribution of high confidence stars in this two dimensional space. 
 
-As apparent on the left panel of Figure~\ref{fig:star_galaxy_I}, there is significant overlap between the distribution of the colors of galaxies in the dense sample with $z_{\rm red}>0.6$ and the distribution of the colors of high confidence stars. On the contrary, there is a clear distinction between the color distribution of objects in the luminous sample and that of the high confidence stars. In order to minimize these impurities we use Support Vector Machines to estimate a boundary that maximizes the margin between the objects in the two classes.  
+As apparent on the left panel of Figure~\ref{fig:star_galaxy_I}, there is significant overlap between the distribution of the colors of galaxies in the dense sample with $z_{\rm red}>0.6$ and the distribution of the colors of high confidence stars. On the contrary, there is a clear distinction between the color distribution of objects in the luminous sample and that of the high confidence stars. 
+
+We use Support Vector Machines (hereafter SVM, see~\citealt{cristianini2000, scholkopf2000}) to estimate a boundary (a line) that maximizes the margin between the objects in the two classes in this two dimensional space. SVM's are a class of maximum margin  classifiers in which a decision boundary is chosen such that the margins between multiple classes are maximized (see \citealt{fadely2012, van2018} for some astrophysical applications of SVM).
+
+In an $N$-dimensional Euclidean space, the decision boundary is an $(N-1)$-dimensional hyperplane which in our case is a line in the $(r-Z, r-K_{\rm s})$ space \footnote{In the case where a non-linear kernel for SVM is used, the $(N-1)$-dimensional hyperspace can be extended a $(N-1)$-dimensional manifold. Here we simply use a linear SVM since the two classes are linearly separable}. Figure~\ref{fig:star_galaxy_II} shows the decision boundary (red dashed line) as predicted by the SVM algorithm. The selected red-sequence galaxy candidates on the right hand side of the decision boundary---shown with red circles---are deemed miss-classified. Such objects are omitted from the red-sequence samples in order to maximize the purity of the sample shown in the right panel of Figure~\ref{fig:star_galaxy_II}. 
+
+Evidently, the purity of the dense sample drops significantly for $z_{\rm red}>0.6$. On the other hand, the purity of the luminous sample remains nearly more than 90\% across the whole redshift range $<0.1<z_{\rm red}<0.8$. This significantly undermines the completeness of the dense sample for redshift above 0.6. 
+
+Another important factor to take into consideration is the variable depth of survey in the bands used in the red-sequence model. Therefore, we inspect the distribution of the selected objects in a two dimensional space spanned by GAaP magnitude and the GAaP limiting magnitude.In particular, we aim to set the redshift reach of the samples such that the distribution of galaxies in this space is not bounded by the limiting magnitude of the survey. We carry out this investigation for the $ugriZ$ bands. For the $griZ$ bands the distribution of galaxies is not limited by the depth of the survey as long as a redshift cut of $z_{\rm red} < 0.6$ and $z_{\rm red} < 0.8$ are applied to the dense and the luminous samples respectively. 
+
+This is demonstrated in Figure~\ref{fig:maglim_g} in which the distribution of galaxies is shown with the 2D purple histogram and the depth of the survey is indicated by the orange dashed line. For the $u$-band however, we note that even after applying the redshift cut of $z_{\rm red} < 0.6$ to the dense sample and $z_{\rm red} < 0.8$ to the luminous sample, both samples are bounded by the depth of the survey. The underlying reason of such limitation is that the red-sequence galaxies become faint in the $u$-band at high redshifts. This problem, amongst other things, is tackled in the next section~\ref{sec:systematic} where we discuss the various survey properties that can affect the observed number densities of galaxies.
+
+\subsection{Photometric redshift distribution}
+
+For our large scale structure study, we construct four redshift bins. 
+In order to maximize the signal-to-noise ratio of the clustering as well as the tangential shear signals we make use of the dense sample as far as the purity and completeness considerations allow us (see section~\ref{sec:purity}). We construct three redshift bins with the dense ($L > 0.5 L_{\star}$) sample: $0.15<z_{\rm red}<0.3$, $0.3<z_{\rm red}<0.45$, $0.45<z_{\rm red}<0.6$; and finally one redshift bin with the luminous ($L > L_{\star}$) sample: $0.6<z_{\rm red}<0.8$.
+
+For every galaxy in the catalog, we have computed a best estimate redshift $z_{\rm red}$ and a redshift uncertainty $\sigma_z$. This prompts us to compare the individual redshift probability distributions with the Normal distribution. We do so by comparing the distribution of the quantity $(z_{\rm red} - z_{\rm spec})/\sigma{z}$ and the Normal distribution in the four tomographic bins. We expect this assumption to hold if the individual redshift distributions with a Gaussian distribution centered on $\z_{\rm spec}$ (modulo some bias) and a scatter of $\sigma_{z}$. 
+
+These distributions are shown in Figure~\ref{fig:pz} in four panels corresponding to the four redshift bins. In each panel, the blue histogram shows the distribution of the scaled redshift residuals while the orange curve shows a Normal distribution with a means set to the median of the scaled distribution and with a standard deviation set to the normalized median absolute deviation of the distribution. We note that the scatters are close to unity with the largest deviations from unity seen in the last two tomographic bins with a scatter of 0.944 and 1.021. Furthermore, the median of the distribution is largest in the last tomographic bin.
+
+Overall, there seems to be an agreement between the distribution of the scaled redshift residuals and a Normal distribution with zero mean and a variance of unity. However, such approximation is not exact meaning that on average the redshift uncertainties are either over estimated (in the case of the first three redshift bins) or underestimated (in the case of the last tomographic bin) \footnote{We have furthermore done some experimentation with Gaussian mixture distributions. We have observed that the scaled residual redshift distributions are better described by multiple Gaussian distributions.}. 
+
+In order to estimate the redshift distributions one can stack the individual redshift probability distribution functions assuming that each individual distribution is a Gaussian with the mean $z_{\rm red}$ and the standard deviation of $\sigma_{z}$. This is the approach undertaken by \citet{elvin2017}. We have decided not to follow this route for two reasons. Firstly, the Gaussian approximation for the individual redshift distributions is only an approximation, and more importantly, stacking the individual redshift distributions does not result in a mathematically correct distribution function for the population of galaxies. 
+
+We use the Direct Redshift Calibration method (hereafter DIR) to estimate the redshift distributions (see~\citealt{lima2008, cunha2009}). In this, the redshift distribution of a photometric sample is estimated by reweighting the redshifts of galaxies in a spectroscopic sample. The reweighting is done such that the distribution of the magnitudes of galaxies in the spectroscopic sample is consistent with that of galaxies in the photometric sample. Similar to the prescription proposed by~\citealt{cunha2009} and \citealt{hendrik2018} in which reweighting is done with the $k$th nearest neighbors algorithm ($k$NN). 
+
+In this approach for each spectroscopic galaxy in the 9 dimensional magnitude space, the distance to the fourth nearest neighbor in the same sample is measured. Afterwards, we count the number of galaxies in the photometric sample within the same radius in the nine-dimensional magnitude space. Finally, the weight of the spectroscopic galaxy is calculated by dividing the number of photometric galaxies within the 8-dimensional hypersphere by the total number of galaxies in the photometric sample. This density estimation technique has been previously followed by \citealt{nicola2019, zhou2020} in order to estimate the redshift distributions of galaxy clustering samples in the first data release of the Hyper Suprime-Cam Subaru Strategic Program (\citealt{hsc_dr1}) and the 8th data release of DESI Legacy Imaging Surveys (\citealt{desi_legacy}) respectively.   
+It is important to note that this procedure is done for each redshift bin separately.
+
+We estimate the sample variance of the redshift distribution from 1000 bootstrap samples of the spectroscopic galaxy catalog. The bootstrap samples provide us with an estimate of the uncertainty on the mean redshift of each tomographic bin. Figure~\ref{fig:pz2} shows the estimated DIR redshift distributions (shaded purple lines) as well as the stacked redshift pdfs (dashed red lines). The shaded orange area in each panel indicates the redshift boundaries of each bin, and the width of the purple line shows the bootstrap uncertainty on the estimated DIR distribution of the bin. The mean redshifts of the bins and their associated uncertainties are summarized in Table~\ref{tab:pz}
+
+
 
 \section{Survey systematics}\label{sec:systematic}
+
+The observing conditions of large galaxy surveys such as KiDS are not homogeneous. 
+The variable survey conditions can potentially affect the observed galaxy density and consequently can 
+bias the cosmological inferences with these galaxy samples (\citealt{ross2012clustering, leistedt2014, leistedt2016mapping, zhai2017clustering, elvin2017, bautista2018sdss, crocce2019dark, DESI_systematic, rezaie2019, icaza2020clustering}). 
+
+In this section, first we describe the imaging systematics considered in our investigation, and then we describe our method for mitigation of these imaging systematics.
+
 
 \subsection{Systematic parameters}
 
@@ -251,6 +296,23 @@ It is important to note that the systematic parameters considered in our investi
 Figure [fignum] demonstrates the correlation between various systematic parameters in the survey. 
 For instance, there is a strong correlation between the limiting magnitude in the u band and the the star number density. 
 
+\begin{table}
+	\centering
+	\caption{{\bf Photo-z tomography information:} 
+    The tomographic bins, the mean redshifts and their corresponding 1-$\sigma$ uncertainties}
+	
+	\label{tab:pz}
+	\begin{tabularx}{\columnwidth}{lccr} % four columns, alignment for each
+		\hline
+		Redshift bin &  Number of objects & $\langle z_{\rm red} \rangle$ & $\delta_{\langle z_{\rm red} \rangle}$ \\
+		\hline
+		$0.15 <z_{\rm red}<0.3$  & 32225  &  0.235 & $\pm$ 0.001  \\
+		$0.3  <z_{\rm red}<0.45$ & 78086  &  0.388 & $\pm$ 0.003  \\
+        $0.45 <z_{\rm red}<0.6$  & 124668  &  0.537 & $\pm$ 0.003  \\
+        $0.6  <z_{\rm red}<0.8$  & 56880  &  0.712 & $\pm$ 0.008  \\
+		\hline
+	\end{tabularx}
+\end{table}
 
 
 \begin{figure*}
@@ -403,7 +465,7 @@ the color space as a function of redshift. The COSMOS-G10 galaxies are shown in 
 \includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_threshold.png}
 \end{tabular}
 \begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_threshold.png}
+\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_extinction.png}
 \end{tabular}
 \caption{\label{fig:xcorr_threshold_ext}} 
 \end{figure*}
