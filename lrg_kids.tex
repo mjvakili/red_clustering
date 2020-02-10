@@ -231,6 +231,26 @@ In an $N$-dimensional Euclidean space, the decision boundary is an $(N-1)$-dimen
 
 Evidently, the purity of the dense sample drops significantly for $z_{\rm red}>0.6$. On the other hand, the purity of the luminous sample remains nearly more than 90\% across the whole redshift range $<0.1<z_{\rm red}<0.8$. This significantly undermines the completeness of the dense sample for redshift above 0.6. 
 
+\begin{table}
+	\centering
+	\caption{{\bf Photo-z tomography information:} 
+    The tomographic bins, the mean redshifts and their corresponding 1-$\sigma$ uncertainties}
+	
+	\label{tab:pz}
+	\begin{tabularx}{\columnwidth}{lccr} % four columns, alignment for each
+		\hline
+		Redshift bin &  Number of objects & $\langle z_{\rm red} \rangle$ & $\delta_{\langle z_{\rm red} \rangle}$ \\
+		\hline
+		$0.15 <z_{\rm red}<0.3$  & 32225  &  0.235 & $\pm$ 0.001  \\
+		$0.3  <z_{\rm red}<0.45$ & 78086  &  0.388 & $\pm$ 0.003  \\
+        $0.45 <z_{\rm red}<0.6$  & 124668  &  0.537 & $\pm$ 0.003  \\
+        $0.6  <z_{\rm red}<0.8$  & 56880  &  0.712 & $\pm$ 0.008  \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+
+
 Another important factor to take into consideration is the variable depth of survey in the bands used in the red-sequence model. Therefore, we inspect the distribution of the selected objects in a two dimensional space spanned by GAaP magnitude and the GAaP limiting magnitude.In particular, we aim to set the redshift reach of the samples such that the distribution of galaxies in this space is not bounded by the limiting magnitude of the survey. We carry out this investigation for the $ugriZ$ bands. For the $griZ$ bands the distribution of galaxies is not limited by the depth of the survey as long as a redshift cut of $z_{\rm red} < 0.6$ and $z_{\rm red} < 0.8$ are applied to the dense and the luminous samples respectively. 
 
 This is demonstrated in Figure~\ref{fig:maglim_g} in which the distribution of galaxies is shown with the 2D purple histogram and the depth of the survey is indicated by the orange dashed line. For the $u$-band however, we note that even after applying the redshift cut of $z_{\rm red} < 0.6$ to the dense sample and $z_{\rm red} < 0.8$ to the luminous sample, both samples are bounded by the depth of the survey. The underlying reason of such limitation is that the red-sequence galaxies become faint in the $u$-band at high redshifts. This problem, amongst other things, is tackled in the next section~\ref{sec:systematic} where we discuss the various survey properties that can affect the observed number densities of galaxies.
@@ -257,232 +277,62 @@ We estimate the sample variance of the redshift distribution from 1000 bootstrap
 
 
 
-\section{Survey systematics}\label{sec:systematic}
+\section{Imaging systematics}\label{sec:systematic}
 
 The observing conditions of large galaxy surveys such as KiDS are not homogeneous. 
 The variable survey conditions can potentially affect the observed galaxy density and consequently can 
-bias the cosmological inferences with these galaxy samples (\citealt{ross2012clustering, leistedt2014, leistedt2016mapping, zhai2017clustering, elvin2017, bautista2018sdss, crocce2019dark, DESI_systematic, rezaie2019, icaza2020clustering}). 
-
-In this section, first we describe the imaging systematics considered in our investigation, and then we describe our method for mitigation of these imaging systematics.
-
+bias the cosmological inferences with these galaxy samples (\citealt{ross2012clustering, leistedt2014, leistedt2016mapping, zhai2017clustering, elvin2017, bautista2018sdss, crocce2019dark, DESI_systematic, rezaie2019, icaza2020clustering}). In what follows, first we describe the imaging systematics, and we will discuss their impact on the observed galaxy number densities and finally the mitigation strategies. 
 
 \subsection{Systematic parameters}
 
-We consider a range of photometric systematic with on-sky variations that can impact the variations of galaxy number densities in our selection of LRGs in KiDS DR4. In total we consider 13 survey properties that we further pixellize using $\healpix$. We produce the $\healpix$ map of these properties with $n_{\rm side} = 256$. Moreover, we consider the galactic extinction in the $r$-band, and the star number density in the survey footprint. In what follows, we list the set of systematic properties considered in our investigation:
+We consider a range of photometric systematics with on-sky variations that can impact the variations of galaxy number densities. In total we consider 13 survey properties that we further pixellize using $\healpix$. We produce the $\healpix$ map of these properties with $n_{\rm side} = 256$. Moreover, we consider the galactic extinction in the $r$-band, and the star number density in the survey footprint. In what follows, we list the set of systematic properties considered in our investigation:
 
 \begin{itemize}
 
-  \item \textbf{Limiting magnitudes in 9 band}: The limiting GAaP magnitude attributes are provided in DR4 as $\mathtt{MAG}\textunderscore{}\mathtt{LIM}\textunderscore{} \mathtt{band}$, where $\mathtt{band} = \{u,g,r,i,z,H,Y,J,K_{\rm s}\}$. 
-  For each band the limitting magnitudes are evaluated on an object-by-object basis. At the position of a given object, the limitting GAaP magnitude corresponds to the 1-$\sigma$ GAaP flux error for the aperture of the source. The aperture size is set the optimal value of the minimum aperture $\mathtt{MIN}\textunderscore{}\mathtt{APER}$ in GAaP photometry. Thus, it depends on the pixel noise---in the Gaussianized image where the GAaP flux is measured---as well as the aperture size. This implies that the limitting magnitudes are indirectly dependent on the full-width-at half-maximum of the point spread function in the bandpass as well as the sky background.   
+  \item \textbf{Background count in the THELI images}: The background counts at the centroid positions of the objects in the THELI-processed $r$-band detection images. In KiDS DR4, the background count is provided as $\mathtt{BACKGROUND}$. Note that the THELI processed detection images are background subtracted. The $\mathtt{BACKGROUND}$ parameter simply returns the value of the residual sky background at the positions of objects. The healpix map of the background counts in shown in~ Figure\ref{fig:scatter_BackGr}.
+
+  \item \textbf{Detection threshold above background}: This quantity is measured in units of counts and it is provided in the single-band source list as $\mathtt{THRESHOLD}$. 
+  
+  \item \textbf{Limiting magnitudes in 9 band}: The limiting GAaP magnitude attributes are provided in DR4 as $\mathtt{MAG}\textunderscore{}\mathtt{LIM}\textunderscore{} \mathtt{band}$, where $\mathtt{band} = \{u,g,r,i,Z,H,Y,J,K_{\rm s}\}$. 
+  For each band the limitting magnitudes are evaluated on an object-by-object basis. At the position of a given object, the limitting GAaP magnitude corresponds to the 1-$\sigma$ GAaP flux error for the aperture of the source. The aperture size is set the optimal value of the minimum aperture $\mathtt{MIN}\textunderscore{}\mathtt{APER}$ in GAaP photometry. Thus, it depends on the pixel noise---in the Gaussianized image where the GAaP flux is measured---as well as the aperture size. This implies that the limitting magnitudes are indirectly dependent on the full-width-at half-maximum of the point spread function in the bandpass as well as the sky background counts.   
   
   \item \textbf{PSF FWHM in the $r$-band}: the PSF FWHM in the $r$-band measured in units of arcseconds. The PSF FWHM is calculated using the fallowing catalog entries: $\mathtt{PSFe1}$, $\mathtt{PSFe2}$, and $\mathtt{PSF \textunderscore{} Strehl \textunderscore{} ratio}$.
     
-    \item \textbf{PSF ellipticity in the $r$-band}: the KiDS PSF ellipticity in the $r$-band. As discussed in \citet{kuijken2019}, both PSF ellipticity and the PSF FWHM in the $r$-band are small, allowing for benign imaging condition in the $r$-band which is used as the detection band in the KiDS photometry pipeline. 
-    The PSF ellipticity quantity is computed from the $\mathtt{PSFe1}$, $\mathtt{PSFe2}$
+  \item \textbf{PSF ellipticity in the $r$-band}: the KiDS PSF ellipticity in the $r$-band. As discussed in \citet{kuijken2019}, both PSF ellipticity and the PSF FWHM in the $r$-band are small, allowing for benign imaging condition in the $r$-band which is used as the detection band in the KiDS photometry pipeline. 
+  The PSF ellipticity quantity is computed from the $\mathtt{PSFe1}$, $\mathtt{PSFe2}$
   
-  \item \textbf{Detection threshold above background}: This quantity is measured in units of counts and it is provided in the single-band source list as $\mathtt{THRESHOLD}$. 
-  
-  \item \textbf{Background count in the THELI images}: The background counts at the centroid positions of the objects in the THELI-processed $r$-band detection images. In KiDS DR4, the background count is provided as $\mathtt{BACKGROUND}$.  
-  
-  Note that the THELI processed detection images are background subtracted. The $\mathtt{BACKGROUND}$ parameter simply returns the value of the residual sky background at the positions of 
-  objects.
   \item \textbf{Galactic dust extinction in the $r$-band}: This quantity is provided as $\mathtt{EXTINCTION\underscore{}r}$ in the nine-band catalog of KiDS DR4. The galactic extinction in the other bands are simply given by scaling of the extinction in the $r$-band.   
-  \item \textbf{Star number density}: We determine the the stellar density from the pixellized number density map of bright stars in the second data release of GAIA (GAIA DR2). This is done by taking the GAIA stars with the $G$-band magnitude between 12 and 17. This is the magnitude range in which the GAIA DR2 G-band is complete (\citealt{gaia0,gaia1}). Note that only GAIA DR2 stars that lie in the KiDS $\mathtt{9bandnoAWr}$ mask are considered in the number density map making process. It is worth noting that a number of parameters in the KiDS DR4 catalog are dedicated to star-galaxy separation. These include the $\mathtt{CLASS\textunderscore{}STAR}$
- parameter which is an output of the source extractor software, the $\mathtt{SG2DPHOT}$ parameter which is an internal KiDS star-galaxy classifier \citep[e.g.][]{kids_dr3, radovich2017}, and lastly the $\mathtt{SG\textunderscore{}FLAG}$ parameter which is derived based on an estimate of the size-peakiness relation of objects. Note that we have already excluded objects in our sample that are classified as high confidence stars according to the parameters $\mathtt{SG2DPHOT}$ and $\mathtt{SG\textunderscore{} FLAG}$. However, in order to reduce any impact of possible imperfections in the star-galaxy classification on our systematic tests, we decide to use a systematic map constructed from an external GAIA DR2 catalog with a pure and compete sample of stars. 
+  
+  \item \textbf{Star number density}: We determine the the stellar density from the pixellized number density map of bright stars in the second data release of GAIA (GAIA DR2). This is done by taking the GAIA stars with the $G$-band magnitude between 12 and 17. This is the magnitude range in which the GAIA DR2 G-band is complete (\citealt{gaia0,gaia1}). Note that only GAIA DR2 stars that lie in the KiDS $\mathtt{9bandnoAWr}$ mask are considered in the process of generating the map of stellar number densities. 
+  
+  It is worth noting that a number of parameters in the KiDS DR4 catalog are dedicated to star-galaxy separation. These include the $\mathtt{CLASS\textunderscore{}STAR}$
+  parameter which is an output of the source extractor software, the $\mathtt{SG2DPHOT}$ parameter which is an internal KiDS star-galaxy classifier \citep[e.g.][]{kids_dr3, radovich2017}, and lastly the $\mathtt{SG\textunderscore{}FLAG}$ parameter which is derived based on an estimate of the size-peakiness relation of objects. Note that we have already excluded objects in our sample that are classified as high confidence stars according to the parameters $\mathtt{SG2DPHOT}$ and $\mathtt{SG\textunderscore{} FLAG}$. However, in order to reduce any impact of possible imperfections in the star-galaxy classification on our systematic tests, we decide to use a systematic map constructed from an external GAIA DR2 catalog with a pure and compete sample of stars. The healpix map of star nump densities is shown in Figure~\ref{fig:scatter_stardens}.
  
 \end{itemize}
 
-It is important to note that the systematic parameters considered in our investigation are not uncorrelated, an effect that may stem from the various survey strategies and observing conditions. 
-Figure [fignum] demonstrates the correlation between various systematic parameters in the survey. 
-For instance, there is a strong correlation between the limiting magnitude in the u band and the the star number density. 
+\subsection{The impact of photometric systematics}
 
-\begin{table}
-	\centering
-	\caption{{\bf Photo-z tomography information:} 
-    The tomographic bins, the mean redshifts and their corresponding 1-$\sigma$ uncertainties}
-	
-	\label{tab:pz}
-	\begin{tabularx}{\columnwidth}{lccr} % four columns, alignment for each
-		\hline
-		Redshift bin &  Number of objects & $\langle z_{\rm red} \rangle$ & $\delta_{\langle z_{\rm red} \rangle}$ \\
-		\hline
-		$0.15 <z_{\rm red}<0.3$  & 32225  &  0.235 & $\pm$ 0.001  \\
-		$0.3  <z_{\rm red}<0.45$ & 78086  &  0.388 & $\pm$ 0.003  \\
-        $0.45 <z_{\rm red}<0.6$  & 124668  &  0.537 & $\pm$ 0.003  \\
-        $0.6  <z_{\rm red}<0.8$  & 56880  &  0.712 & $\pm$ 0.008  \\
-		\hline
-	\end{tabularx}
-\end{table}
+In order to quantify such systematic-induced variations, we make pixellized on-sky maps of survey properties using the healpix framework (\citealt{healpix}) \footnote{In particular, we use healpy (\citealt{healpy2019}), a python library for handling and analyzing healpix maps.}. Similar to the works of \citet{ross2017, rezaie2019}, we construct the pixellized maps with the resolution of $N_{\rm side} = 256$. 
 
+The systematic parameters considered in our investigation are not uncorrelated. Figure~\ref{fig:sys_sys_correlation} demonstrates the correlation between various systematic parameters in the survey namely: the limiting magnitude in the $u$-band, star number density, threshold, and the Background counts. For instance, there is a strong correlation between the limiting magnitude in the u band and the the star number density. Conversely, there is an anti-correlation between the background counts in the coadded $r$-band images and the star number density.
 
-\begin{figure*}
-\includegraphics[width=\textwidth]{figures_tmp/cosmos_color.png}
-\caption{\label{fig:cosmos_color}Distribution of the selected luminous red-sequence galaxies in 
-the color space as a function of redshift. The COSMOS-G10 galaxies are shown in red dots.} 
-\end{figure*}
+Due to the covariance between various imaging systematics, we inspect the variation of the observed galaxy number densities and the imaging systematics in the linear basis in which the covariance matrix between the systematic parameters is diagonal. The basis vectors of this space are the principal components of the imaging systematics. In such a basis, one can assess the variations between the observed galaxy number density and the different basis vectors independently. In particular, we inspect the variation of galaxy over-densities $\delta_{\rm gal} = N_{\rm gal}/\langle N_{\rm gal} \rangle$. Any deviation of this quantity with respect to unity will signal the impact of imaging systematics.\footnote{Note that alternatively, one can reformulate this by looking at the deviations of $N_{\rm gal}/N_{\rm random}$ (module some normalization) from one, where $N_{\rm random}$ is the number density of a set of uniformly distributed random points across the survey footprint (see \citep[e.g. ][]{bautista2018sdss, icaza2020clustering}).}   
 
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures_tmp/cosmos_sersic.png}
-\caption{\label{fig:cosmos_sersic}Distribution of Sersic indices of LRG's in the COSMOS field.} 
-\end{figure}
+The variation of the number density versus the systematic parameters is demonstrated in Figure~\ref{fig:sys_ng_correlation} where four rows correspond to the four tomographic bins in Table~\ref{tab:pz}. Note that the observed galaxy number density-systematic trends are shown with the orange errorbars. In each row, only the trends with considerable deviation from unity are shown. We note that the variations in the observed number density as a result of survey inhomogeneity changes depends on the galaxy sample under study,  with galaxies in different tomographic bins showing different sensitivities.
 
+In this work we mitigate the impact of systematics by introducing a set of photometric weights to remove the variation of galaxy densities due to imaging systematics. This approach has been widely used in the literature in order to account for the impact os systematics: clustering of LRGs in SDSS BOSS (\citealt{ross2012clustering, ross2017clustering}), galaxy clustering in the Dark Energy Survey (\citealt{elvin2017,crocce2019dark}), DESI legacy survey (\citealt{DESI_systematic}), and clustering of LRGs in SDSS-eBOSS (\citealt{bautista2018sdss, icaza2020clustering}). 
 
-\begin{figure*}
-\begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/red_vs_star_dense.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/red_vs_star_lum.png}
-\end{tabular}
-\caption{\label{fig:star_galaxy_I} Demonstration of the use of optical+NIR colors for identification of likely stellar objects amongst the red-sequence galaxy candidate. Right Panel: At redshifts above $z_{\rm red}>0.4$ red-sequence galaxies (shown in red) and high confidence stars (shown in blue) reside in separated regions of the two-dimensional $(r-K_{\rm s}) \times (r-z)$ colors. Shown in pink dashed line is the support vector machine prediction of a boundary line between the two classes. The red-sequence candidates falling below the predicted boundary are marked by open circle and thus masked as likely stellar objects in the final catalog. Left Panel: Purity fraction of the dense  (green dashed line) and the luminous (orange dashed line) samples defined as the stellar contamination fraction subtracted from unity.} 
-\end{figure*}
+Following the work of \citet{bautista2018sdss}, we introduce a set of photometric weights by assuming a linear relation between the pixellized observed galaxy overdensities and $\delta_{\rm gal} = N_{\rm gal}/\langle N_{\rm gal}\rangle$ and the set of pixellized systematic parameters. That is assuming $\boldsymbol{\delta}_{\rm gal} = \mathbf{Ws+b} + \mathbf{\mathrm{noise}}$. 
 
+Additionally, we introduce an $L_{2}$ regularization to this linear regression problem in order to avoid overfitting. The advantage of such approach to that of \citet{ross2017clustering} is that it does not assume that there is no correlation between the systematic parameters. 
 
-\begin{figure*}
-\begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/stars_SVM_lum.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/lrg_purity.png}
-\end{tabular}
-\caption{\label{fig:star_galaxy_II} Demonstration of the use of optical+NIR colors for identification of likely stellar objects amongst the red-sequence galaxy candidate. Right Panel: At redshifts above $z_{\rm red}>0.4$ red-sequence galaxies (shown in red) and high confidence stars (shown in blue) reside in separated regions of the two-dimensional $(r-K_{\rm s}) \times (r-z)$ colors. Shown in pink dashed line is the support vector machine prediction of a boundary line between the two classes. The red-sequence candidates falling below the predicted boundary are marked by open circle and thus masked as likely stellar objects in the final catalog. Left Panel: Purity fraction of the dense  (green dashed line) and the luminous (orange dashed line) samples defined as the stellar contamination fraction subtracted from unity.} 
-\end{figure*}
+Alternatively, one can use self organizing maps (SOM, \citealt{kohonen1997}) to learn the systematic galaxy density modes due the variable survey properties and then generating a set of organized randoms mimicking the galaxy depletion pattern across the survey footprint (\citealt{som2020}). We have also tested this method and we have found that this method works best in correcting the systematic depletion in a galaxy sample with a higher number density than the galaxy sample in our study. 
 
+Figure~\ref{fig:sys_ng_correlation} shows the variation of the number density with respect to the principal components of the systematic parameters before (shown in orange) and after (shown in blue) introducing the photometric weights. We note that after introducing the weights, the variations with respect to the systematics reduce significantly.
 
-\begin{figure*}
- 
- \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_dense_zmax_0_6.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_lum_zmax_0_8.png}
-\end{tabular}
-\caption{\label{fig:maglim_g} Demonstration of the distributions of the GaAP magnitudes and the limiting magnitudes in the $g$-band for the dense sample (left panel) and the luminous sample (right panel). In both figures the pixellized distributions and contours are color-coded by the number counts. Note that the maximum redshifts of the two samples, $z_{\rm red}=0.6$ (dense) sample and $z_{\rm red}=0.8$ (luminous) sample are chosen such that the samples remain volume-limited and not limited by the varying depth of the survey (shown with the dashed orange line in both panels).} 
-\end{figure*}
+Furthermore, we compute the cross-correlation between the galaxies in the four redshift bins and a set of imaging systematics. Such cross-correlations have been used in~\citet{ho2012} and \citet{crocce2016galaxy} to find an unbiased estimate of the angular clustering in the presence of the systematics \footnote{This prescription relies on the assumption of the Gaussianity of the galaxy density field.}. Nonetheless, these cross-correlations can provide a useful diagnosis of the performance of the photometric weights in removing the systematic depletion of the galaxy densities. 
 
-\begin{figure*}
- 
- \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_1.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_2.png}
-\end{tabular}
-
- \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_3.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_4.png}
-\end{tabular}
-\caption{\label{fig:pz} The Blue histogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
-\end{figure*}
-
-
-%\begin{figure}
-%\includegraphics[width=\columnwidth]{figures_tmp/zerr_dist_2.png}
-%\caption{\label{fig:pz} The Blue hisogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
-%\end{figure}
-
-
-%\begin{figure}
-%\includegraphics[width=\columnwidth]{figures_tmp/nofz.png}
-%\caption{\label{fig:pz} Tomographic redshift distributions of our red galaxy sample in four bins: %$0.15<z_{\rm red}<0.3, \;0.3<z_{\rm red}<0.45, \;0.45<z_{\rm red}<0.6, \;0.6<z_{\rm red}<0.8$.
-% The redshift distributions of the lenses are estimated directly from the the individual red-sequence %redshift estimates and their corresponding uncertainties.} 
-%\end{figure}
-
-
-
-\begin{figure*}
-\begin{tabular}{cc}
-\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_1.png}
-\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_2.png}
-\end{tabular}
-\begin{tabular}{cc}
-\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_3.png}
-\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_4.png}
-\end{tabular}
-
-\caption{\label{fig:pz2} Tomographic redshift distributions of our red galaxy sample in four bins: $0.15<z_{\rm red}<0.3, \;0.3<z_{\rm red}<0.45, \;0.45<z_{\rm red}<0.6, \;0.6<z_{\rm red}<0.8$.
- The redshift distributions are estimated from two methods: DIR redshift distributions are shown in blue and the stacked redshift probabilities are shown in orange.} 
-\end{figure*}
-
-
-
-\begin{figure*}
-\includegraphics[width=\textwidth]{figures_tmp/sys/scatter_BackGr.png}
-\caption{\label{fig:scatter_fwhm} .} 
-\end{figure*}
-
-\begin{figure*}
-\includegraphics[width=\textwidth]{figures_tmp/sys/scatter_nstar.png}
-\caption{\label{fig:scatter_fwhm} .} 
-\end{figure*}
-
-\begin{figure*}
-\begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation1.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation2.png}
-\end{tabular}
-\begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation3.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation5.png}
-\end{tabular}
-\caption{\label{fig:sys_correlation} Demonstration of the non-negligible covariance between the survey properties. The anti-correlation between the Background counts in the coadds and the stellar number density is evident (\textit{Top Right}). Furthermore, we note the anti-correlation between the magnitude limit in the $u$-band (\textit{Top Right}), anti-correlation between the detection threshold and the star number density (\textit{Bottom Left}), and the magnitude limit in the $u$-band and the star number density (\textit{Bottom Right}).} 
-\end{figure*}
-
-
-\begin{figure*}
-\begin{tabular}{ccc}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_0_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_2_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_3_poly_1.png}
-\end{tabular}
-
-\begin{tabular}{ccc}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_0_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_3_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_8_poly_1.png}
-\end{tabular}
-
-\begin{tabular}{ccc}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_1_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_5_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_6_poly_1.png}
-\end{tabular}
-
-\begin{tabular}{ccc}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_0_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_4_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_5_poly_1.png}
-\end{tabular}
-
-\caption{\label{fig:sys_correlation} Demonstration of the correlation between the galaxy number densities and the principal components of the survey properties before (shown in orange) and after the application of systematic weights (shown in blue). The panels from top to bottom show the systematic correlation in the $0.15<z_{\rm red}<0.3$, $0.3<z_{\rm red}<0.45$, $0.45<z_{\rm red}<0.6$, $0.6<z_{\rm red}<0.8$ tomographic bins respectively. In each row, a subset of principal components that exhibit considerable correlation with the observed number densities are shown.} 
-\end{figure*}
-
-\begin{figure*}
-\begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_ulim.png}
-\end{tabular}
-\begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_BackGr.png}
-\end{tabular}
-\caption{\label{fig:xcorr_ulim_bkg}} 
-\end{figure*}
-
-\begin{figure*}
-\begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_threshold.png}
-\end{tabular}
-\begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_extinction.png}
-\end{tabular}
-\caption{\label{fig:xcorr_threshold_ext}} 
-\end{figure*}
-
-
-\subsection{Galaxy number density variations due to systematics}
-
-In this section, we explore the variation of the observed galaxy density $n_{\rm gal}$ with respect to the systematic parameters $\{s_i\}_{i=1}^{N_{\rm sys}}$. We note that the variations in the observed number density as a result of survey inhomogeneity changes depends on the galaxy sample under study. 
-
-In order to quantify such systematic-induced variations, we make pixellized on-sky maps of survey properties using the healpix framework (\citealt{healpix}) \footnote{In particular, we use healpy (\citealt{healpy2019}), a python library for handling and analyzing healpix maps.}. Similar to the works of \citet{ross2017, rezaie2019}, we construct the pixellized maps with the resolution of $N_{\rm side} = 256$.
-
-We note that indeed the survey properties induce variations in the 
-observed number density of galaxies, and that these variations are to large degree consistent between different tomographic bins. 
-
-For instance, for the first tomographic bin, we observe correlation between the $n_{\rm gal}$ and the following survey properties: stellar number density, PSF FWHM, Background counts, detection threshold, and the limiting magnitude in the reddest near-infrared bands, namely $J, H, K_{\rm s}$. 
-
-On the other hand, when considering the systematic correlation in the third tomographic bin ($0.45<z<0.6$)
+Cross-correlation between the positions of galaxies and the 
 
 \section{Galaxy Clustering}\label{sec:clustering}
 \subsection{Theory}
@@ -544,27 +394,164 @@ The theoretical model summarized in equation~\ref{eq:clustering_theory} fails to
 \section{Summary}\label{sec:summary} 
 
 
-
-
-
 \section*{Acknowledgements}
 
 
+\begin{figure*}
+\includegraphics[width=\textwidth]{figures_tmp/cosmos_color.png}
+\caption{\label{fig:cosmos_color}Distribution of the selected luminous red-sequence galaxies in 
+the color space as a function of redshift. The COSMOS-G10 galaxies are shown in red dots.} 
+\end{figure*}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures_tmp/cosmos_sersic.png}
+\caption{\label{fig:cosmos_sersic}Distribution of Sersic indices of LRG's in the COSMOS field.} 
+\end{figure}
+
+
+\begin{figure*}
+\begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/red_vs_star_dense.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/red_vs_star_lum.png}
+\end{tabular}
+\caption{\label{fig:star_galaxy_I} Demonstration of the use of optical+NIR colors for identification of likely stellar objects amongst the red-sequence galaxy candidate. Right Panel: At redshifts above $z_{\rm red}>0.4$ red-sequence galaxies (shown in red) and high confidence stars (shown in blue) reside in separated regions of the two-dimensional $(r-K_{\rm s}) \times (r-z)$ colors. Shown in pink dashed line is the support vector machine prediction of a boundary line between the two classes. The red-sequence candidates falling below the predicted boundary are marked by open circle and thus masked as likely stellar objects in the final catalog. Left Panel: Purity fraction of the dense  (green dashed line) and the luminous (orange dashed line) samples defined as the stellar contamination fraction subtracted from unity.} 
+\end{figure*}
+
+
+\begin{figure*}
+\begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/stars_SVM_lum.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/lrg_purity.png}
+\end{tabular}
+\caption{\label{fig:star_galaxy_II} Demonstration of the use of optical+NIR colors for identification of likely stellar objects amongst the red-sequence galaxy candidate. Right Panel: At redshifts above $z_{\rm red}>0.4$ red-sequence galaxies (shown in red) and high confidence stars (shown in blue) reside in separated regions of the two-dimensional $(r-K_{\rm s}) \times (r-z)$ colors. Shown in pink dashed line is the support vector machine prediction of a boundary line between the two classes. The red-sequence candidates falling below the predicted boundary are marked by open circle and thus masked as likely stellar objects in the final catalog. Left Panel: Purity fraction of the dense  (green dashed line) and the luminous (orange dashed line) samples defined as the stellar contamination fraction subtracted from unity.} 
+\end{figure*}
+
+
+\begin{figure*}
+ 
+ \begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_dense_zmax_0_6.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_lum_zmax_0_8.png}
+\end{tabular}
+\caption{\label{fig:maglim_g} Demonstration of the distributions of the GaAP magnitudes and the limiting magnitudes in the $g$-band for the dense sample (left panel) and the luminous sample (right panel). In both figures the pixelised distributions and contours are color-coded by the number counts. Note that the maximum redshifts of the two samples, $z_{\rm red}=0.6$ (dense) sample and $z_{\rm red}=0.8$ (luminous) sample are chosen such that the samples remain volume-limited and not limited by the varying depth of the survey (shown with the dashed orange line in both panels).} 
+\end{figure*}
+
+\begin{figure*}
+ 
+ \begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_1.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_2.png}
+\end{tabular}
+
+ \begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_3.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_4.png}
+\end{tabular}
+\caption{\label{fig:pz} The Blue histogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
+\end{figure*}
+
+
+%\begin{figure}
+%\includegraphics[width=\columnwidth]{figures_tmp/zerr_dist_2.png}
+%\caption{\label{fig:pz} The Blue hisogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
+%\end{figure}
+
+
+%\begin{figure}
+%\includegraphics[width=\columnwidth]{figures_tmp/nofz.png}
+%\caption{\label{fig:pz} Tomographic redshift distributions of our red galaxy sample in four bins: %$0.15<z_{\rm red}<0.3, \;0.3<z_{\rm red}<0.45, \;0.45<z_{\rm red}<0.6, \;0.6<z_{\rm red}<0.8$.
+% The redshift distributions of the lenses are estimated directly from the the individual red-sequence %redshift estimates and their corresponding uncertainties.} 
+%\end{figure}
+
+
+
+\begin{figure*}
+\begin{tabular}{cc}
+\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_1.png}
+\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_2.png}
+\end{tabular}
+\begin{tabular}{cc}
+\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_3.png}
+\includegraphics[width=\columnwidth]{figures_tmp/nz_comp_4.png}
+\end{tabular}
+
+\caption{\label{fig:pz2} Tomographic redshift distributions of our red galaxy sample in four bins: $0.15<z_{\rm red}<0.3, \;0.3<z_{\rm red}<0.45, \;0.45<z_{\rm red}<0.6, \;0.6<z_{\rm red}<0.8$.
+ The redshift distributions are estimated from two methods: DIR redshift distributions are shown in blue and the stacked redshift probabilities are shown in orange.} 
+\end{figure*}
 
 
 
 
+\begin{figure*}
+\includegraphics[width=\textwidth]{figures_tmp/sys/scatter_BackGr.png}
+\caption{\label{fig:scatter_BackGr} The healpix map of the background counts in the coadded images in the $r$-band in the KiDS DR4 footprint.} 
+\end{figure*}
+
+\begin{figure*}
+\includegraphics[width=\textwidth]{figures_tmp/sys/scatter_nstar.png}
+\caption{\label{fig:scatter_stardens} The healpix map of the density of GAIA DR2 stars ($14<G<17$) in the KiDS DR4 footprint.} 
+\end{figure*}
+
+\begin{figure*}
+\begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation1.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation2.png}
+\end{tabular}
+\begin{tabular}{cc}
+\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation3.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation5.png}
+\end{tabular}
+\caption{\label{fig:sys_sys_correlation} Demonstration of the non-negligible covariance between the survey properties. The anti-correlation between the Background counts in the coadds and the stellar number density is evident (\textit{Top Right}). Furthermore, we note the anti-correlation between the magnitude limit in the $u$-band (\textit{Top Right}), anti-correlation between the detection threshold and the star number density (\textit{Bottom Left}), and the magnitude limit in the $u$-band and the star number density (\textit{Bottom Right}).} 
+\end{figure*}
 
 
-%\begin{figure*}
-% \begin{tabular}{cc}
-%\includegraphics[width=0.4\textwidth]{figures_tmp/nz_dense.png}
-%\includegraphics[width=0.4\textwidth]{figures_tmp/nz_lum.png}
-%\end{tabular}
-%\caption{\label{fig:nz}  Tomographic redshift distributions of the lens and the source galaxies for the purpose of galaxy-galaxy lensing analysis. The Left and the middle panels show the redshift distributions of the dense and the luminous galaxies respectively. These galaxies are considered as lens galaxies in our lensing analysis. The redshift distributions of the lenses are estimated directly from the the individual red-sequence redshift estimates and their corresponding uncertainties. The right panel shows the redshift distributions of the source galaxies in the KiDS-1000 cosmic shear data. These redshift distributions are estimated from the DIR method taking advantage of the deep spectroscopic calibration fields targeted by KiDS.} 
-%\end{figure*}
+\begin{figure*}
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_0_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_2_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_3_poly_1.png}
+\end{tabular}
 
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_0_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_3_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_8_poly_1.png}
+\end{tabular}
 
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_1_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_5_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_6_poly_1.png}
+\end{tabular}
+
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_0_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_4_poly_1.png}
+\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_5_poly_1.png}
+\end{tabular}
+
+\caption{\label{fig:sys_ng_correlation} Demonstration of the correlation between the observed galaxy number densities and the principal components of the survey properties before (shown in orange) and after the application of systematic weights (shown in blue). The panels from top to bottom show the systematic correlation in the $0.15<z_{\rm red}<0.3$, $0.3<z_{\rm red}<0.45$, $0.45<z_{\rm red}<0.6$, $0.6<z_{\rm red}<0.8$ tomographic bins respectively. In each row, a subset of principal components that exhibit considerable correlation with the observed number densities are shown.} 
+\end{figure*}
+
+\begin{figure*}
+\begin{tabular}{c}
+\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_ulim.png}
+\end{tabular}
+\begin{tabular}{c}
+\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_BackGr.png}
+\end{tabular}
+\caption{\label{fig:xcorr_ulim_bkg}} 
+\end{figure*}
+
+\begin{figure*}
+\begin{tabular}{c}
+\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_threshold.png}
+\end{tabular}
+\begin{tabular}{c}
+\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_extinction.png}
+\end{tabular}
+\caption{\label{fig:xcorr_threshold_ext}} 
+\end{figure*}
 
 
 \begin{figure*}
