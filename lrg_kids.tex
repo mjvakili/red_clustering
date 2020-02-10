@@ -63,7 +63,7 @@
 \newcommand{\lum}{\mathtt{luminous}}
 \newcommand{\dk}{\boldsymbol{w}_{g}^{(k)}}
 \newcommand{\dg}{\boldsymbol{\gamma}_{t}}
-\newcommand{\dbar}{\overline{\boldsymbol{w}_{g}}}
+\newcommand{\dbar}{\overline{\boldsymbol{w}}_{g}}
 \newcommand{\njk}{N_{\rm JK}}
 \newcommand{\healpix}{\mathtt{HEALPIX}}
 
@@ -367,14 +367,14 @@ As discussed in Section~\ref{sec:systematic}, In each redshift bin, depending on
 Figure~\ref{fig:xi} shows the angular clustering measurements of LRGs at 4 tomographic bins, with the first three bins encompassing the galaxies in the dense (L> 0.5 * L_{\star}) sample and the last bin ($0.6<z<0.8$) encompassing the galaxies in the luminous (L> L_{\star}) sample. The clustering signal estimated using the photometric weights is shown by the blue data points and the signal estimated without the weights is shown by the blue data points. 
 
 We estimate the measurement uncertainties using the jackknife resampling method (\citealt{norberg2009,oliver2016,singh2017,shirasaki2017}). 
-In the jackknife method, the survey footprint is first divided into $N_{\mathrm{JK}}$ jackknife subregions of approximately equal area. 
-Then for each subregion $k\in\{1,...,N_{\mathrm{JK}}\}$, the clustering data vector $\boldsymbol{w}_{g}^{(k)} = \langle w^{(k)}_{g}\rangle$ is measured by cutting out the $k$-th subregion and estimating the clustering signal of the rest of the survey footprint. Note that $\boldsymbol{w}_{g}^{(k)}$ is a vector which contains the 2PCF in all angular bins considered in this study. The jackknife estimator of the covariance matrix is then given by:
+In this method, the survey footprint is first divided into $N_{\mathrm{JK}}$ jackknife subregions of approximately equal area \footnote{The segmentation of KiDS DR4 footprint into $N_{\mathrm{JK}}$ is done with the $K$-means algorithm. In particular we made use of the implementation of this algorithm designed to handle RA and DEC coordinates on the sky (\hyperlink{kmeans\_radec}{https://github.com/esheldon/kmeans\_radec})}.
+
+Then for each subregion $k\in\{1,...,N_{\mathrm{JK}}\}$, the clustering data vector $\boldsymbol{w}_{g}^{(k)} = \langle w^{(k)}_{g}\rangle$ is measured by dropping the $k$-th subregion and estimating the clustering signal of the rest of the survey area. Note that $\boldsymbol{w}_{g}^{(k)}$ is a vector containing the 2PCF measured in all the angular bins considered in this study. The jackknife estimator of the covariance matrix is then given by:
 \be 
 C_{\rm JK} = \frac{\njk - 1}{\njk}\sum_{k=1}^{\njk}\big(\dk-\dbar\big)^{T}\big(\dk-\dbar\big), 
 \label{eq:jk}
 \ee
 where $\dbar$ is the mean of all $\boldsymbol{w}_{g}^{(k)}$ vectors. 
-
 
 \subsection{Inference setup}
 
