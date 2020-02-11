@@ -333,21 +333,22 @@ Furthermore, we compute the cross-correlation between the positions galaxies in 
 
 Cross-correlations between the galaxies and the $u$-band limiting magnitude (upper panel) and the background counts (lower panel) are shown in Figures~\ref{fig:xcorr_ulim_bkg}. It is evident that the cross-correlations after incorporating the photometric weights (blue points) are considerably reduced in comparison with the cross-correlations without the weights (orange points). Figure~\ref{fig:xcorr_threshold_ext} shows the cross-correlations with a different set of systematics: the detection threshold (upper panel) and the galactic extinction $E(B-V)$ (lower panel).
 
-%We have not explored the effect of various observing conditions on the distribution of the physical properties of galaxies. Such effects can in principle generate systematic on-sky variations of the estimate host halo mass of galaxies in our sample. Such an effect can subsequently further complicate the cosmological analysis. This problem is exacerbated in a galaxy survey covering a larger area and can only be taken into account through a careful forward model approach which is outside the scope of this paper.  
+We have not explored the effect of various observing conditions on the distribution of the physical properties of galaxies. Such effects can in principle generate systematic on-sky variations of the estimate host halo mass of galaxies in our sample. Such an effect can subsequently further complicate the cosmological analysis. This problem is exacerbated in a galaxy survey covering a larger area and can only be taken into account through a careful forward model approach which is outside the scope of this paper.  
 
 \begin{table}
-	\centering
+\begin{center}
 	\caption{{\bf Prior probability distribution over the model parameters:} 
     The prior probability distribution over the linear galaxy bias and the photo-z shift parameters. We assume a uniform prior over the bias parameters and a Gaussian prior over the photo-z shift parameters. The Gaussian priors have zero means and variances set by the uncertainty on the mean redshifts of the DIR redshift distributions (see Table~\ref{tab:pz}).}
 	\label{tab:prior}
-	\begin{tabularx}{\columnwidth}{lcccr} % four columns, alignment for each
+	\begin{tabular}{@{}lllll} 
+	\\	\hline
+		Parameter        & & Prior       & & Range \\
 		\hline
-		Parameter: $ \; \theta$ & & & & Prior: $ \; p(\theta)$ \\
+		$b_{g}^{(i)}$    & & Uniform     & & $\mathcal{U}\Big(1,3.5\Big)$  \\
+		$\Delta z^{(i)}$ & & Gaussian    & & $\mathcal{N}\Big(0, \delta^{2}_{z^{(i)}}\Big)$  \\
 		\hline
-		$b_{g}^{(i)}$  & & & & $\mathcal{U}\Big(1,3.5\Big)$  \\
-		$\Delta z^{(i)}$ & & & & $\mathcal{N}\Big(0, \delta^{2}_{z^{(i)}}\Big)$  \\
-		\hline
-	\end{tabularx}
+	\end{tabular}
+\end{center}
 \end{table}
 
 
@@ -392,6 +393,14 @@ C_{\rm JK} = \frac{\njk - 1}{\njk}\sum_{k=1}^{\njk}\big(\dk-\dbar\big)^{T}\big(\
 \ee
 where $\dbar$ is the mean of all $\boldsymbol{w}_{g}^{(k)}$ vectors. 
 
+Since the covariance matrix is estimated from the jackknife method with a finite number of jackknife subregionds, our estimates of the covariance matrix and its inverse are noisy. The unbiased estimate of the inverse covariance matrix is related to the inverse of the estimated jackknife covariance matrix $\hat{C}_{\rm JK}$ following \citet{hartlap2007}:
+
+\be
+\widehat{C^{-1}} = \frac{\njk - N_{d} - 2}{\njk - 1} \hat{C}^{-1}_{\rm JK},
+\label{eq:hartlap}
+\ee
+where $\njk$ is the number of jackknife subregions and $N_{d}$ is the number of angular bins at which the angular 2PCF is computed. Note that $N_d$ only consists of the number of data-points that enter the likelihood function evaluation. In other words, the data points that do not pass the scale cuts described in section~\ref{sec:scale_cut} are excluded from the Equation~\ref{eq:hartlap}.  
+
 \subsection{Inference setup}
 
 \subsubsection{Parameters}
@@ -414,7 +423,7 @@ In this approach the estimated inverse covariance matrix is changed by multiplic
              &\rightarrow& L^{T}B^{T}BL \label{eq:blinded}
 \end{eqnarray}
 
-\subsubsection{Scale cuts}
+\subsubsection{Scale cuts}\label{sec:scale_cu}
 
 The theoretical model summarized in equation~\ref{eq:clustering_theory} fails to capture the full complexity of galaxy-matter connection on small scales as it relies only on a simple linear deterministic treatment of galaxy bias. Therefore, we decide to apply a conservative cut on the comoving scales considered in our theoretical fittings. In particular, we adopt a cut at a comving scale of 8 $\mathrm{Mpc}h^{-1}$ which translates to the minimum angular scale (hereafter denoted by $\theta_{\rm min}$) of 30 arcmin for the first bin, 18.4 arcmin for the second bin, 14 arcmin for the third bin, and finally 11 arcmin for the last tomographic bin. The comoving distance is converted to angular scales assuming the flat LCDM cosmology discussed shortly above. Furthermore, the parameter $\theta_{\rm min}$ in each tomographic bin is calculated from the comoving distance at the mean redshift of the bin.
 
@@ -603,18 +612,18 @@ the color space as a function of redshift. The COSMOS-G10 galaxies are shown in 
 
 \begin{figure*}
 \includegraphics[width=\textwidth]{figures_tmp/correlation_0_6.png}
-\caption{\label{fig:xi} Two correlation matrix corresponding to the angular clustering measurements in the last tomographic bin. One of the matrices is the original correlation matrix derived from the jackknife covariance matrix computed in section~\ref{sec:measurement}, while the other matrix is constructed with the method of~\citet{sellentin2019} such that the posterior value picks at some predefined value.} 
+\caption{\label{fig:covariance_estimate} Two correlation matrix corresponding to the angular clustering measurements in the last tomographic bin. One of the matrices is the original correlation matrix derived from the jackknife covariance matrix computed in section~\ref{sec:measurement}, while the other matrix is constructed with the method of~\citet{sellentin2019} such that the posterior value picks at some predefined value.} 
 \end{figure*}
 
 \begin{figure*}
 \includegraphics[width=\textwidth]{figures_tmp/w_estimate.png}
-\caption{\label{fig:xi} Comparison between the posterior predictions (red shaded) of clustering and the clustering measurements (blue) in the four tomographic bins. The dark and light shaded regions mark the 68\% and the 95\% confidence intervals. The error bars are from the diagonal elements of the blinded covariance matrix of the observations.} 
+\caption{\label{fig:w_estimate} Comparison between the posterior predictions (red shaded) of clustering and the clustering measurements (blue) in the four tomographic bins. The dark and light shaded regions mark the 68\% and the 95\% confidence intervals. The error bars are from the diagonal elements of the blinded covariance matrix of the observations.} 
 \end{figure*}
 
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures_tmp/b_estimate.png}
-\caption{\label{fig:xi} Constraints on the linear galaxy bias of the red-sequence sample in four tomographic bins.} 
+\caption{\label{fig:b_estimate} Constraints on the linear galaxy bias of the red-sequence sample in four tomographic bins.} 
 \end{figure}
 
 
