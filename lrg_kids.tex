@@ -152,7 +152,9 @@ In this work we use the fourth KiDS data release (KiDS DR4 \citealt{kuijken2019}
 
 The achieved 5$\sigma$ limiting AB magnitudes of the survey are 24.3, 25.1, 24.9, 23.8 in $2$ arcsec apertures in the $ugri$ bands respectively. For a thorough description of the KiDS data processing, we refer the readers to the data release paper (\citealt{kuijken2019}). 
 
-The KiDS database includes magnitudes in the $r$-band derived by SExtractor (\citealt{sextractor}) such as \texttt{ISO} and \texttt{AUTO}. These magnitudes are determined directly from images with a variety of PSF values, they are therefore not optimal for our purposes where colours independent of such variations are needed. The KiDS data reduction involves however a post-processing procedure in which Gaussian Aperture and PSF (GAaP,~\citealt{gaap}) magnitudes are derived (\citealt{kuijken2015}). This procedure is performed in the following way. First, the PSF is homogenized across each individual coadd. Afterwards, a Gaussian-weighted aperture is used to measure the photometry. The size and shape of the aperture is determined by the object's length of the major axis, its length of the minor axis, and its orientation, all measured in the $r$-band. This procedure provides a set of magnitudes for all filters. 
+%The KiDS database includes magnitudes in the $r$-band derived by SExtractor (\citealt{sextractor}) such as \texttt{ISO} and \texttt{AUTO}. These magnitudes are determined directly from images with a variety of PSF values, they are therefore not optimal for our purposes where colours independent of such variations are needed. 
+
+The KiDS data reduction involves however a post-processing procedure in which Gaussian Aperture and PSF (GAaP,~\citealt{gaap}) magnitudes are derived (\citealt{kuijken2015}). This procedure is performed in the following way. First, the PSF is homogenized across each individual coadd. Afterwards, a Gaussian-weighted aperture is used to measure the photometry. The size and shape of the aperture is determined by the object's length of the major axis, its length of the minor axis, and its orientation, all measured in the $r$-band. This procedure provides a set of magnitudes for all filters. 
 
 The magnitudes used in this work are the zeropoint-calibrated and foreground dust extinction-corrected magnitudes\footnote{In the final catalogue and for each band, the zeropoint offsets ($\mathtt{ZPT}_{-}\mathtt{offset}_{-}\mathtt{band}$) and the Galactic extinction corrections ($\mathtt{EXT}_{-}\mathtt{SFD}_{-}\mathtt{band}$) based on \citet{schlegel98} are provided in separate columns.} 
 denoted by $\; \mathtt{Mag}_{-}\mathtt{type}_{-}\mathtt{band}_{-}\mathtt{calib}$. 
@@ -622,7 +624,7 @@ the color space as a function of redshift. The COSMOS-G10 galaxies are shown in 
 
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{figures_tmp/b_estimate.png}
+\includegraphics[width=\columnwidth]{figures_tmp/joint_estimate.png}
 \caption{\label{fig:b_estimate} Constraints on the linear galaxy bias of the red-sequence sample in four tomographic bins.} 
 \end{figure}
 
