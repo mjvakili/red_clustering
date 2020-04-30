@@ -112,17 +112,14 @@ galaxies: distances and redshifts, gravitational lensing: weak, methods: data an
 
 \section{Introduction}
 
-The Kilo Degree Survey (KiDS) is an optical galaxy survey primarily designed to map the large scale structure by studying the weak gravitational lensing of galaxies (\citealt{kuijken2015, kuijken2019}). This is done by measuring the correlation between the distortion of the shapes of distant galaxies (\citealt{hendrick2017,hendrik2018}). These correlations are then compared to the predictions of cosmological simulations to test cosmological models (\citealt{heymans2013,jee2016,hendrick2017,joudaki2017,troxel2017,joudaki2019, hikage2019}). 
+The Kilo Degree Survey (KiDS) is an optical galaxy survey primarily designed to map the large scale structure by studying the weak gravitational lensing of galaxies (\citealt{kuijken2015, hendrick2017, hendrik2018, kuijken2019}). This is done by measuring the distortion of the shapes of distant galaxies known as the cosmic shear. The correlation between the cosmic shear estimates across the sky is then compared to the predictions of simulations to test cosmological models. Cosmic shear analysis is the cornerstone of modern cosmological imaging surveys (\citealt{heymans2013,jee2016,hendrick2017,joudaki2017,troxel2017,joudaki2019, hikage2019}). 
 
 However, the full constraining potential of weak lensing studies can only be realized through the joint analysis of the cosmic shear of back ground galaxies and the positions of foreground galaxies with robust distance estimates. This involves measuring the correlation between the cosmic shear estimates of the background galaxies, the correlation between the positions of foreground galaxies, and eventually the cross-correlation between the cosmic shear of background galaxies and the positions of foreground galaxies (\citealt{cacciato2013, cosmolike, des_y1_cosmology, elvin2017, edo2018, prat2017}). 
+The advantages of such combined analyses are two-folded: obtaining tighter constraints on cosmological parameters and the possible extensions to the standard model of cosmology, and offering a venue for mitigation of a range of observational and theoretical systematics such as photometric redshift uncertainties and intrinsic alignments (\citealt{edo2016, joudaki2018, sam2019}). 
 
-The advantages of such combined analyses are two-folded: obtaining tighter constraints on cosmological parameters and the possible extensions to the standard model of cosmology, and offering a venue for mitigation of a range of observational and theoretical uncertainties such as photometric redshift uncertainties and intrinsic alignments (\citealt{edo2016, joudaki2018, sam2019}). In this work, we focus on selection of a sample of galaxies with robust estimates of redshift as well as measuring their angular two-point correlation function in slices of redshift. 
+In this work, we focus on selection of a sample of galaxies with robust redshift estimates as well as measuring their angular two-point correlation function in slices of redshift. Following the work of \citet{vakili2019} we construct a sample of red-sequence galaxies by taking advantage of the fact that at any given redshift, the distribution of these galaxies in the colour space follows a multivariate Gaussian distribution. At a fixed redshift, the mean of this Gaussian distribution is described by a linear function of magnitude. The coefficients of this linear relation depend on redshift. Furthermore, the covariance of the distribution can be fully characterized by redshift \citep[e.g.][]{bower1992,ellis1997,gladders1998,stanford1998}. 
 
-Following the work of \citet{vakili2019} we construct a sample of red-sequence galaxies by taking advantage of the fact that at any given redshift, the distribution of these galaxies in the colour-magnitude space follows a straight line --- with some intrinsic scatter --- known as the red-sequence ridge-line \citep[e.g.][]{bower1992,ellis1997,gladders1998,stanford1998}. 
-
-The redshift-dependent distribution of the red-sequence galaxies in the colour-magnitude space allows us to select these galaxies with the broad-band photometry of the imaging surveys (\citealt{gladders_yee2000,hao2009,redmap_sdss,rozo2016,elvin2017,oguri2018,vakili2019}). This can be achived with a data-driven model of the color-magnitude relation of the red-sequence galaxies as a function of redshift. In this work, we build this data-driven model with the multi-band photometry of the KiDS DR4 (\citealt{kuijken2019}). In particular, we make use of the KiDS OmegaCAM $ugri$ optical bandpasses as well as the VIKING $Z$ bandpass.  
-
-The model is calibrated with a set of spectroscopic redshifts based on four spectroscopic datasets, including SDSS DR13 (\citealt{sdss_dr13}), GAMA (\citealt{driver2011}), 2dFLenS (\citealt{blake2016}), and the GAMA reanalysis of the redshifts in G10-COSMOS region (hereafter G10-COSMOS \citealt{davis2015}). 
+This conditional distribution allows us to select red-sequence galaxies with the broad-band photometry of the imaging surveys (\citealt{gladders_yee2000,hao2009,redmap_sdss,rozo2016,elvin2017,oguri2018,vakili2019}). In this work, we build this data-driven model with the multi-band photometry of the KiDS DR4 (\citealt{kuijken2019}) and its overlap with the following spectroscopic datasets: SDSS DR13 (\citealt{sdss_dr13}), GAMA (\citealt{driver2011}), 2dFLenS (\citealt{blake2016}), and the GAMA reanalysis of the redshifts in G10-COSMOS region (hereafter G10-COSMOS \citealt{davis2015}). A major modification with respect to the red-sequence model of \citet{vakili2019} is the addition of the VIKING $Z$ bandpass to the KiDS OmegaCAM $ugri$ optical bandpasses.  
 
 Following the $\textsc{redMagiC}$ prescription (\citealt{rozo2016}), we impose a set of luminosity cuts and constant comoving densities, and we construct two samples of luminous red galaxies suitable for galaxy clustering and galaxy-galaxy lensing studies. The main differences between the method described in this work and the previous work of \citet{vakili2019} are: the inclusion of the VIKING $Z$-band magnitudes in the red-sequence template, and the inclusion of the G10-COSMOS in spectroscopic calibration of the model. %We also use the VIKING $K_{\rm s}$ band to assess the purity of the sample selected based on the red-sequence template.  
 
@@ -427,7 +424,7 @@ In this approach the estimated inverse covariance matrix is changed by multiplic
 
 \subsubsection{Scale cuts}\label{sec:scale_cu}
 
-The theoretical model summarized in equation~\ref{eq:clustering_theory} fails to capture the full complexity of galaxy-matter connection on small scales as it relies only on a simple linear deterministic treatment of galaxy bias. Therefore, we decide to apply a conservative cut on the comoving scales considered in our theoretical fittings. In particular, we adopt a cut at a comving scale of 8 $\mathrm{Mpc}h^{-1}$ which translates to the minimum angular scale (hereafter denoted by $\theta_{\rm min}$) of 30 arcmin for the first bin, 18.4 arcmin for the second bin, 14 arcmin for the third bin, and finally 11 arcmin for the last tomographic bin. The comoving distance is converted to angular scales assuming the flat LCDM cosmology discussed shortly above. Furthermore, the parameter $\theta_{\rm min}$ in each tomographic bin is calculated from the comoving distance at the mean redshift of the bin.
+The theoretical model summarized in equation~\ref{eq:clustering_theory} fails to capture the full complexity of galaxy-matter connection on small scales as it relies only on a simple linear deterministic treatment of galaxy bias. Therefore, we decide to apply a conservative cut on the comoving scales considered in our theoretical fittings. In particular, we adopt a cut at a comoving scale of 8 $\mathrm{Mpc}h^{-1}$ which translates to the minimum angular scale (hereafter denoted by $\theta_{\rm min}$) of 30 arcmin for the first bin, 18.4 arcmin for the second bin, 14 arcmin for the third bin, and finally 11 arcmin for the last tomographic bin. The comoving distance is converted to angular scales assuming the flat LCDM cosmology discussed shortly above. Furthermore, the parameter $\theta_{\rm min}$ in each tomographic bin is calculated from the comoving distance at the mean redshift of the bin.
 
 \subsubsection{Likelihood and posterior sampling}
 
@@ -456,6 +453,12 @@ the color space as a function of redshift. The COSMOS-G10 galaxies are shown in 
 \end{figure*}
 
 \begin{figure}
+\includegraphics[width=\columnwidth]{figures_tmp/zphotscatter.png}
+\caption{\label{fig:zphotscatter}Comparison between the estimated red-sequence redshifts and spectroscopic redshifts of galaxies with spectroscopy.} 
+\end{figure}
+
+
+\begin{figure}
 \includegraphics[width=\columnwidth]{figures_tmp/cosmos_sersic.png}
 \caption{\label{fig:cosmos_sersic}Distribution of Sersic indices of LRG's in the COSMOS field.} 
 \end{figure}
@@ -479,28 +482,34 @@ the color space as a function of redshift. The COSMOS-G10 galaxies are shown in 
 \end{figure*}
 
 
-\begin{figure*}
+%\begin{figure*}
  
- \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_dense_zmax_0_6.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_lum_zmax_0_8.png}
-\end{tabular}
-\caption{\label{fig:maglim_g} Demonstration of the distributions of the GaAP magnitudes and the limiting magnitudes in the $g$-band for the dense sample (left panel) and the luminous sample (right panel). In both figures the pixelised distributions and contours are color-coded by the number counts. Note that the maximum redshifts of the two samples, $z_{\rm red}=0.6$ (dense) sample and $z_{\rm red}=0.8$ (luminous) sample are chosen such that the samples remain volume-limited and not limited by the varying depth of the survey (shown with the dashed orange line in both panels).} 
-\end{figure*}
+% \begin{tabular}{cc}
+%\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_dense_zmax_0_6.png}
+%\includegraphics[width=0.5\textwidth]{figures_tmp/magg_lim_type_lum_zmax_0_8.png}
+%\end{tabular}
+%\caption{\label{fig:maglim_g} Demonstration of the distributions of the GaAP magnitudes and the limiting magnitudes in the $g$-band for the dense sample (left panel) and the luminous sample (right panel). In both figures the pixelised distributions and contours are color-coded by the number counts. Note that the maximum redshifts of the two samples, $z_{\rm red}=0.6$ (dense) sample and $z_{\rm red}=0.8$ (luminous) sample are chosen such that the samples remain volume-limited and not limited by the varying depth of the survey (shown with the dashed orange line in both panels).} 
+%\end{figure*}
 
-\begin{figure*}
+%\begin{figure*}
  
- \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_1.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_2.png}
-\end{tabular}
+% \begin{tabular}{cc}
+%\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_1.png}
+%\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_2.png}
+%\end{tabular}
 
- \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_3.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_4.png}
-\end{tabular}
-\caption{\label{fig:pz} The Blue histogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
-\end{figure*}
+% \begin{tabular}{cc}
+%\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_3.png}
+%\includegraphics[width=0.5\textwidth]{figures_tmp/nz_normal_4.png}
+%\end{tabular}
+%\caption{\label{fig:pz} The Blue histogram shows the distribution of the offset between the red-sequence redshifts $z_{\rm red}$ and the spectroscopic redshifts $z_{\rm spec}$, weighted by their corresponding redshift uncertainties $\sigma_{z_{\rm red}}$. The orange solid line is a Gaussian distribution with zero mean and standard deviation of unity. This demonstrates that the a Gaussian distribution is a good description of the red-sequence redshift probability distribution functions of galaxies in the our sample of luminous red galaxies.} 
+%\end{figure*}
+
+\begin{figure}
+    \includegraphics[width = \columnwidth]{figures_tmp/student_t.png}
+    \caption{The distribution of the quantity $(z_{\rm spec} - z_{\rm red})/sigma_z$ is shown in orange. Shown in Blue(red) is the best-fit Student-t (Gaussian) distributions. Student-t provides a better description of the long-tails of the redshift distributions of individual galaxies.}
+    \label{fig:my_label}
+\end{figure}
 
 
 %\begin{figure}
@@ -535,7 +544,7 @@ the color space as a function of redshift. The COSMOS-G10 galaxies are shown in 
 
 
 \begin{figure*}
-\includegraphics[width=\textwidth, height = 0.5\textwidth]{figures_tmp/sys/scatter_BackGr.png}
+\includegraphics[width=\textwidth, height = 0.5textwidth]{figures_tmp/sys/scatter_BackGr.png}
 \caption{\label{fig:scatter_BackGr} The healpix map of the background counts in the coadded images in the $r$-band in the KiDS DR4 footprint.} 
 \end{figure*}
 
@@ -546,65 +555,77 @@ the color space as a function of redshift. The COSMOS-G10 galaxies are shown in 
 
 \begin{figure*}
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation1.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation2.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/sys_nstar_backgr.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/sys_maglimk_maglimz.png}
 \end{tabular}
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation3.png}
-\includegraphics[width=0.5\textwidth]{figures_tmp/sys/correlation5.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/sys_maglimr_backgr.png}
+\includegraphics[width=0.5\textwidth]{figures_tmp/sys_ext_maglimu.png}
 \end{tabular}
 \caption{\label{fig:sys_sys_correlation} Demonstration of the non-negligible covariance between the survey properties. The anti-correlation between the Background counts in the coadds and the stellar number density is evident (\textit{Top Right}). Furthermore, we note the anti-correlation between the magnitude limit in the $u$-band (\textit{Top Right}), anti-correlation between the detection threshold and the star number density (\textit{Bottom Left}), and the magnitude limit in the $u$-band and the star number density (\textit{Bottom Right}).} 
 \end{figure*}
 
-
 \begin{figure*}
-\begin{tabular}{ccc}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_0_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_2_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_3_poly_1.png}
-\end{tabular}
-
-\begin{tabular}{ccc}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_0_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_3_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_8_poly_1.png}
-\end{tabular}
-
-\begin{tabular}{ccc}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_1_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_5_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_6_poly_1.png}
-\end{tabular}
-
-\begin{tabular}{ccc}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_0_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_4_poly_1.png}
-\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_5_poly_1.png}
-\end{tabular}
-
-\caption{\label{fig:sys_ng_correlation} Demonstration of the correlation between the observed galaxy number densities and the principal components of the survey properties before (shown in orange) and after the application of systematic weights (shown in blue). The panels from top to bottom show the systematic correlation in the $0.15<z_{\rm red}<0.3$, $0.3<z_{\rm red}<0.45$, $0.45<z_{\rm red}<0.6$, $0.6<z_{\rm red}<0.8$ tomographic bins respectively. In each row, a subset of principal components that exhibit considerable correlation with the observed number densities are shown.} 
+    \includegraphics[width = \textwidth]{figures_tmp/weights_2.png}
+    \caption{Caption}
+    \label{fig:my_label}
 \end{figure*}
 
-\begin{figure*}
-\begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_ulim.png}
-\end{tabular}
-\begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_BackGr.png}
-\end{tabular}
-\caption{\label{fig:xcorr_ulim_bkg}} 
-\end{figure*}
+%\begin{figure*}
+%\begin{tabular}{ccc}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_0_poly_1.png}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_2_poly_1.png}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_15_3_poly_1.png}
+%\end{tabular}
+
+%\begin{tabular}{ccc}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_0_poly_1.png}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_3_poly_1.png}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_3_8_poly_1.png}
+%\end{tabular}
+
+%\begin{tabular}{ccc}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_1_poly_1.png}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_5_poly_1.png}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_45_6_poly_1.png}
+%\end{tabular}
+
+%\begin{tabular}{ccc}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_0_poly_1.png}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_4_poly_1.png}
+%\includegraphics[width=0.3\textwidth]{figures_tmp/sys/result_pca_ngal_0_6_5_poly_1.png}
+%\end{tabular}
+
+%\caption{\label{fig:sys_ng_correlation} Demonstration of the correlation between the observed galaxy number densities and the principal components of the survey properties before (shown in orange) and after the application of systematic weights (shown in blue). The panels from top to bottom show the systematic correlation in the $0.15<z_{\rm red}<0.3$, $0.3<z_{\rm red}<0.45$, $0.45<z_{\rm red}<0.6$, $0.6<z_{\rm red}<0.8$ tomographic bins respectively. In each row, a subset of principal components that exhibit considerable correlation with the observed number densities are shown.} 
+%\end{figure*}
+
+%\begin{figure*}
+%\begin{tabular}{c}
+%\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_ulim.png}
+%\end{tabular}
+%\begin{tabular}{c}
+%\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_BackGr.png}
+%\end{tabular}
+%\caption{\label{fig:xcorr_ulim_bkg} \mjv{These are going to change!}} 
+%\end{figure*}
+
+%\begin{figure*}
+%\begin{tabular}{c}
+%\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_threshold.png}
+%%\end{tabular}
+%\begin{tabular}{c}
+%\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_extinction.png}
+%\end{tabular}
+%\caption{\label{fig:xcorr_threshold_ext} \mjv{These are most likely going to change as well}}
+
+%\end{figure*}
 
 \begin{figure*}
-\begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_threshold.png}
-\end{tabular}
-\begin{tabular}{c}
-\includegraphics[width=\textwidth]{figures_tmp/sys/wcross_sys_type_extinction.png}
-\end{tabular}
-\caption{\label{fig:xcorr_threshold_ext}} 
+    %\centering
+    \includegraphics[width = \textwidth]{figures_tmp/sys/cross_60.png}
+    \caption{Cross correlation of the galaxy number density in the fourth redshift bin with the first four principal components of the systematic variables with the systematic weights (shown in blue) and without the systematic weights (shown in red). The width of the bands show the 68\% in the jacknife uncertainties. The estimated cross-correlations are consistent with zero.}
+    \label{fig:cross-correlation}
 \end{figure*}
-
 
 \begin{figure*}
 \includegraphics[width=\textwidth]{figures_tmp/xi.png}
@@ -624,8 +645,8 @@ the color space as a function of redshift. The COSMOS-G10 galaxies are shown in 
 
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{figures_tmp/joint_estimate.png}
-\caption{\label{fig:b_estimate} Constraints on the linear galaxy bias of the red-sequence sample in four tomographic bins.} 
+\includegraphics[width=\columnwidth]{figures_tmp/joint_estimate_blind.png}
+\caption{\label{fig:b_estimate} Constraints on the linear galaxy bias and the photo-z shift parameters of the red-sequence sample in four tomographic bins.} 
 \end{figure}
 
 
