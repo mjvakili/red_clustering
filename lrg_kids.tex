@@ -77,6 +77,10 @@
 \newcommand{\mjv}{\textcolor{cyan}}
 \newcommand{\edit}{\textcolor{red}}
 \newcommand{\Referee}{\textcolor{red}}
+
+\newcommand{\mb}{\textcolor{brown}}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\be}{\begin{equation}}
@@ -138,7 +142,10 @@ Mohammadjavad Vakili\inst{1}\thanks{\emph{E-mail:} vakili@strw.leidenuniv.nl} et
 %\maketitle
 
 % Abstract of the paper
-\abstract{We present a sample of luminous red-sequence galaxies to study the large-scale structure in the fourth data release of the Kilo Degree Survey. The selected galaxies are defined by a red-sequence template, a data-driven model of the color-magnitude relation conditioned on redshift. In this work, the red-sequence template is built using the broad-band optical+near infrared photometry of KiDS-VIKIING and the overlapping spectroscopic data sets. The selection process involves estimating the red-sequence redshifts, assessment of the purity of the sample, and estimating the redshift distributions. Then we mitigate the impact of survey properties on the observed number density of galaxies by assigning photometric weights to the galaxies. We measure the angular two-point correlation function of these galaxies in four redshift bins. After blinding the inverse covariance matrices of the correlation functions, we constrain the large-scale bias of our red-sequence sample. We find consistent linear biases with each luminosity-threshold sample. We finally compare our findings with the expectations of the passive evolution model.}
+\abstract{We present a sample of luminous red-sequence galaxies to study the large-scale structure in the fourth data release of the Kilo Degree Survey. The selected galaxies are defined by a red-sequence template, a data-driven model of the color-magnitude relation conditioned on redshift. In this work, the red-sequence template is built using the broad-band optical+near infrared photometry of KiDS-VIKING and the overlapping spectroscopic data sets \mb{[maybe say which ones?]}. The selection process involves estimating the red-sequence redshifts, assessment of the purity of the sample, and estimating the \mb{true} redshift distributions. %Then
+\mb{After performing the selection,} we mitigate the impact of survey properties on the observed number density of galaxies by assigning photometric weights to the galaxies. We measure the angular two-point correlation function of %these 
+\mb{the red} galaxies in four redshift bins. After blinding the inverse covariance matrices of the correlation functions, we constrain the large-scale bias of our red-sequence sample. We find consistent linear biases %with each 
+\mb{for two} luminosity-threshold sample\mb{s defined (`dense' and `luminous')}. We finally compare our findings with the expectations of the passive evolution model.}
 
 % Select between one and six entries from the list of approved keywords.
 % Don't make up new ones.
@@ -153,18 +160,18 @@ Mohammadjavad Vakili\inst{1}\thanks{\emph{E-mail:} vakili@strw.leidenuniv.nl} et
 
 \section{Introduction}
 
-The Kilo Degree Survey (KiDS) is an optical galaxy survey primarily designed to map the large-scale structure by studying the weak gravitational lensing of galaxies (\citealt{kuijken2015, hendrick2017, kuijken2019, hendrik2020}). This is done by measuring the distortion of the shapes of distant galaxies known as the cosmic shear. The correlation between the cosmic shear estimates across the sky is then compared to the predictions of simulations to test cosmological models. Cosmic shear analysis is the cornerstone of modern cosmological imaging surveys (\citealt{heymans2013,jee2016,hendrick2017,joudaki2017,troxel2017,joudaki2019, hikage2019}). 
+The Kilo Degree Survey (KiDS) is an optical galaxy survey primarily designed to map the large-scale structure by studying the weak gravitational lensing of galaxies (\citealt{kuijken2015, hendrick2017, kuijken2019, hendrik2020}) \mb{[Kuijken'19 probably not here. Also, maybe add Giblin'20 and Asgari'20 in prep?]}. This is done by measuring the distortion of the shapes of distant galaxies known as the cosmic shear. The correlation between the cosmic shear estimates across the sky is then compared to the predictions of simulations\mb{[rather: theoretical predictions?]} to test cosmological models. Cosmic shear analysis is the cornerstone of modern cosmological imaging surveys (\citealt{heymans2013,jee2016,hendrick2017,joudaki2017,troxel2017,joudaki2019, hikage2019}). 
 
-However, the full constraining potential of weak lensing studies can only be realized through the joint analysis of the cosmic shear of background galaxies and the positions of foreground galaxies with robust distance estimates. This involves measuring the correlation between the cosmic shear estimates of the background galaxies, the correlation between the positions of foreground galaxies as well as the cross-correlation between the cosmic shear of background galaxies and the positions of foreground galaxies (\citealt{cacciato2013, cosmolike, des_y1_cosmology, elvin2017, edo2018, prat2017}). 
+However, the full constraining potential of weak lensing studies can only be realized through the joint analysis of the cosmic shear of background galaxies and the positions of foreground galaxies with robust distance estimates. This involves measuring the correlation between the cosmic shear estimates of the background galaxies, the correlation between the positions of foreground galaxies as well as the cross-correlation between the cosmic shear of background galaxies and the positions of foreground galaxies\mb{, known as `galaxy-galaxy lensing'} (\citealt{cacciato2013, cosmolike, des_y1_cosmology, elvin2017, edo2018, prat2017}). 
 The advantages of such combined analyses are two-fold: obtaining tighter constraints on cosmological parameters and the extensions to the standard model of cosmology, and offering a venue for mitigation of a range of observational and theoretical systematics such as photometric redshift uncertainties and intrinsic alignments (\citealt{edo2016, joudaki2018, sam2019}). 
 
 In this work, we focus on selecting a sample of galaxies with robust redshift estimates as well as measuring their angular two-point correlation function in slices of redshift. Following the work of \citet{vakili2019} we construct a sample of red-sequence galaxies by leveraging the fact that the distribution of these galaxies in colour space follows a multivariate Gaussian distribution. The mean of this distribution is a linear function of magnitude. Furthermore, the coefficients of this linear relation as well as the covariance of the Gaussian distribution are determined by the redshift \citep[e.g.][]{bower1992,ellis1997,gladders1998,stanford1998}. 
 
-We can then leverage this empirical distribution to select red-sequence galaxies with the broad-band photometry of the imaging surveys (\citealt{gladders_yee2000,hao2009,redmap_sdss,rozo2016,elvin2017,oguri2018,vakili2019}). In this work, we build this data-driven model with the multi-band photometry of the KiDS DR4 (\citealt{kuijken2019}) and its overlap with the following spectroscopic data sets: SDSS DR13 (\citealt{sdss_dr13}), GAMA (\citealt{driver2011}), 2dFLenS (\citealt{blake2016}), and the GAMA reanalysis of the redshifts in COSMOS region (hereafter G10-COSMOS \citealt{davis2015}). 
+We can then leverage this empirical distribution to select red-sequence galaxies with the broad-band photometry of imaging surveys (\citealt{gladders_yee2000,hao2009,redmap_sdss,rozo2016,elvin2017,oguri2018,vakili2019}). In this work, we build this data-driven model with the multi-band photometry of the KiDS \mb{Data Release 4 (DR4,} \citealt{kuijken2019}) and its overlap with the following spectroscopic data sets: SDSS DR13 (\citealt{sdss_dr13}), GAMA (\citealt{driver2011}), 2dFLenS (\citealt{blake2016}), and the GAMA reanalysis of the redshifts in the COSMOS region (hereafter G10-COSMOS, \citealt{davis2015}). 
 
 %A major modification with respect to the red-sequence model of \citet{vakili2019} is the addition of the VIKING $Z$ filter to the KiDS OmegaCAM $ugri$ optical filters.  
 
-Following the $\textsc{redMagiC}$ prescription (\citealt{rozo2016}), we impose a set of luminosity cuts and constant comoving densities, and we construct two samples of red-sequence galaxies with nearly constant comoving density suitable for galaxy clustering and galaxy-galaxy lensing studies. We call these the dense (high density, low brightness) and the luminous (low density, high brightness) samples. The main differences between the red-sequence selection in this work and the previous work of \citet{vakili2019} are: the inclusion of the VIKING $Z$-band magnitudes in the red-sequence template, and the inclusion of the G10-COSMOS in spectroscopic calibration of the model. %We also use the VIKING $K_{\rm s}$ band to assess the purity of the sample selected based on the red-sequence template.  
+Following the $\textsc{redMagiC}$ prescription (\citealt{rozo2016}), we impose a set of luminosity cuts and constant comoving densities, and we construct two samples of red-sequence galaxies with nearly constant comoving density suitable for galaxy clustering and galaxy-galaxy lensing studies. We call these the dense (high density, low brightness) and the luminous (low density, high brightness) samples. The main differences between the red-sequence selection in this work and the previous work of \citet{vakili2019} are: the inclusion of the VIKING $Z$-band magnitudes in the red-sequence template, and the inclusion of the G10-COSMOS in spectroscopic calibration of the model. \mb{[say maybe how these help? %We also use the VIKING $K_{\rm s}$ band to assess the purity of the sample selected based on the red-sequence template.  
 
 Furthermore, we utilize the VIKING $K_{\rm s}$-band magnitudes to investigate the purity of the selected objects within each luminosity threshold sample. We then remove the outliers to maximize the purity of the catalog. Given the purity of the samples and the variable depth of the survey, we choose the redshift reaches of the luminosity threshold samples. The redshift reach of each sample is chosen such that the sample remains pure while nearly volume-limited (constant comoving density) below that redshift. Afterwards, we divide the galaxy sample into four redshift bins between 0.15 and 0.8, with the first three redshift bins comprising the galaxies in the dense sample and the last bin consisting of the galaxies in the luminous sample. 
 
@@ -394,7 +401,7 @@ Evidently, the estimated purity of galaxies in the dense sample drops significan
 
 \begin{table*}
 	\centering
-	\caption{{\bf Photo-z bias divided into four redshift bins and four spec-z data} In each redshift bin, we compare the photo-z biases, mean and standard deviation, with respect to the four spectroscopic surveys. The number of spectroscopic redshifts are shown in parenthesis.}
+	\caption{{\bf Photo-z bias divided into four redshift bins and four spec-z data} In each redshift bin, we compare the photo-z biases, summarized with mean and standard deviation, with respect to the four spectroscopic surveys. The number of spectroscopic redshifts available in each redshift bin and spectroscopic data set is shown in parenthesis.}
 	\label{tab:bias}
 	\begin{tabularx}{0.75\textwidth}{lcccr} % four columns, alignment for each
 		\hline
@@ -515,7 +522,12 @@ bias the cosmological inferences with these galaxy samples (\citealt{ross2012clu
 \end{figure*}
 
 
-We consider a range of photometric systematics with on-sky variations that can impact the variations of galaxy number densities. In total we consider 13 survey properties that we further pixelate using $\healpix$ (\citealt{healpix}). We produce the $\healpix$ map of these properties with $n_{\rm side} = 256$. Moreover, we consider the Galactic extinction in the $r$-band, and the star number density in the survey footprint. In what follows, we list the set of systematic properties considered in our investigation:
+We consider a range of photometric systematics with on-sky variations that can impact the variations of galaxy number densities. In total we consider 13 survey properties that we further pixelate using $\healpix$ (\citealt{healpix}). We produce the $\healpix$ map of these properties with $n_{\rm side} = 256$. Moreover, we consider the Galactic extinction in the $r$-band, and the star number density in the survey footprint. 
+
+It is important to note that the detection band in the KiDS photometry pipeline is the $r$-band. Therefore, most of the systamtic parameters considered in our analysis are extracted from the $r$-band imaging data. Since we make use of the galaxy GAaP magnitudes and magnitude errors in our red-sequence pipeline, we also include the GAaP limiting magnitudes in our list of imaging systematics.  
+ 
+
+In what follows, we list the set of systematic properties considered in our investigation:
 
 \begin{itemize}
 
@@ -538,8 +550,6 @@ We consider a range of photometric systematics with on-sky variations that can i
   It is worth noting that a number of parameters in the KiDS DR4 catalog are dedicated to star-galaxy separation. These include the $\mathtt{CLASS\_STAR}$
   parameter which is an output of the source extractor software, the $\mathtt{SG2DPHOT}$ parameter which is an internal KiDS star-galaxy classifier \citep[e.g.][]{kids_dr3, radovich2017}, and lastly the $\mathtt{SG\_FLAG}$ parameter which is derived based on an estimate of the size-peakiness relation of objects. Note that we have already excluded objects in our sample that are classified as high confidence stars according to the parameters $\mathtt{SG2DPHOT}$ and $\mathtt{SG\_FLAG}$. However, in order to reduce any impact of possible imperfections in the star-galaxy classification on our systematic tests, we decide to use a systematic map constructed from an external GAIA DR2 catalog with a complete sample of stars. The $\mathtt{HEALPIX}$ map of star number densities is shown in Figure~\ref{fig:scatter_stardens}.
  
-  It is important to note that the detection band in the KiDS photometry pipeline is the $r$-band. Therefore, most of the systamtic parameters considered in our analysis are extracted from the $r$-band imaging data. Since we make use of the galaxy GAaP magnitudes and magnitude errors in our red-sequence pipeline, we also include the GAaP limiting magnitudes in our list of imaging systematics.  
- 
 \end{itemize}
 
 %\begin{figure*}
@@ -557,7 +567,7 @@ We consider a range of photometric systematics with on-sky variations that can i
 \begin{figure}
     %\centering
     \includegraphics[width = \columnwidth]{figures_tmp/cross_45.png}
-    \caption{Cross correlation of the galaxy number density in the fourth redshift bin with the first four principal components of the systematic variables with the systematic weights (shown in blue) and without the systematic weights (shown in red). The width of the bands show the 68\% in the jacknife uncertainties. The estimated cross-correlations are consistent with zero.}
+    \caption{Cross correlation of the galaxy number density in the third redshift bin with the systematic variable most correlated with $n_g$. The cross-correlation is computed with (without) the systematic weights is shown in blue (red). The width of the bands show the 68\% in the jacknife uncertainties. The estimated cross-correlations are consistent with zero.}
     \label{fig:cross-correlation}
 \end{figure}
 
@@ -579,7 +589,7 @@ $\{\mathbf{s}_{i} \in \mathbb{R}^{15}\}_{i=1}^{N_{\rm pix}}$ so that the mean an
 \begin{equation}
     \mathbf{S}_{\perp} = [S_{\perp}^{(1)}, S_{\perp}^{(2)}, ..., S_{\perp}^{(15)}],
 \end{equation}
-where $S_{\perp}^{(j)}$ is the $j$-th systematic vector in the new basis. For the third redshift bin $z_{\rm red} \in [0.45, 0.6]$, the variation of the observed number density versus the systematic parameters $\mathbf{S}_{\perp}$ is shown by the red bands in Figure~\ref{fig:sys_ng_correlation}, where we only show the four most significant variations quantified by the reduced chi-squared $\chi^2_{\rm red}$. A higher $\chi^{2}_{\rm red}$ value implies a more considerable systematic trend in which the observed galaxy over-density deviates from unity.  
+where $S_{\perp}^{(j)}$ is the $j$-th systematic vector in the new basis. For the third redshift bin $z_{\rm red} \in [0.45, 0.6]$\footnote{For brevity we only show the systematic-density trends in the third bin. The systematic trends in the rest of the redshift bins and the corrections are similar.}, the variation of the observed number density versus the systematic parameters $\mathbf{S}_{\perp}$ is shown by the red bands in Figure~\ref{fig:sys_ng_correlation}, where we only show the four most significant variations quantified by the reduced chi-squared $\chi^2_{\rm red}$. A higher $\chi^{2}_{\rm red}$ value implies a more considerable systematic trend in which the observed galaxy over-density deviates from unity.  
 
 %Note that the observed galaxy number density-systematic trends are shown with the orange errorbars. In each row, only the trends with considerable deviation from unity are shown. We note that the variations in the observed number density as a result of survey inhomogeneity changes depends on the galaxy sample under study,  with galaxies in different tomographic bins showing different sensitivities.
 
@@ -589,11 +599,11 @@ Following the work of \citet{bautista2018sdss}, we introduce a set of photometri
 
 Additionally, we consider two modifications. First, we introduce a set of second-order polynomial features from the original feature space $\{\mathbf{s}\}$. These polynomial features are then mapped to the observed galaxy overdensity via a linear relation. Furthermore, we introduce an $L_{2}$ regularization to this regression problem which is implemented by adding a regularization term $\lambda \sum_{k} W_k^2$ to the least square cost function. The added advantage of this regularization term is that it tends to keep the $\mathbf{W}$ parameters small thereby avoiding overfitting.
 
-In practice, we choose the regularization hyper-parameter $\lambda$ by a $k$-fold cross-validation search in which we explore a wide range of $\lambda$ values from $10^{-4}$ to $10^{5}$. We note that in all the redshift bins, our cross-validation optimization procedure prefers a heavy regularization in which a very large value of $\lambda \in [10^3-10^4]$ is favored. The advantage of this approach to that of \citet{ross2017clustering} is that it does not assume that there is no correlation between the systematic parameters.
+In practice, we choose the regularization hyper-parameter $\lambda$ by a $k$-fold cross-validation search in which we explore a wide range of $\lambda$ values from $10^{-4}$ to $10^{5}$. We note that in all the redshift bins, our cross-validation optimization procedure prefers a heavy regularization in which a very large value of $\lambda \in [10^3-10^5]$ is favored. The advantage of this approach to that of \citet{ross2017clustering} is that it does not assume that there is no correlation between the systematic parameters.
 
 The prediction of this model, once applied to the pixelated systematic maps provides a set of photometric weights that removes the systematically induced variations in the galaxy number density. The photometric weights are obtained by taking the inverse of the prediction of the model. Figure~\ref{fig:sys_ng_correlation} demonstrates how the photometric weights derived from our framework can help reduce the systematic trends seen in the observed galaxy number densities. In Figure~\ref{fig:sys_ng_correlation}, the density-correlations are displayed after taking into account the photometric weights (shown in blue) and without the photometric weights (shown in red). We note that the reduced $\chi^{2}$ is reduced significantly once the photometric weights are taken into consideration. 
 
-Moreover, we investigate the two-point cross-correlations of the galaxy number density and the orthogonal systematic parameters $\{\mathbf{S}_{\perp, i}\}_{i=1}^{N_{pix}}$ as a function of angular separation. In Figure~\ref{fig:cross-correlation}, the cross-correlations between the galaxy number density in the third redshift bin ($z_{\rm red} \in [0.45, 0.6]$) and the first four orthognal systematic vectors $S_{\perp}^{(1)}, S_{\perp}^{(2)}, S_{\perp}^{(3)}, S_{\perp}^{(4)}$ are shown in the case where we include the systematic weights (shown in blue) and when we do not include the systematic weights (shown in red). The width of the bands represent the 68\% uncertainties obtained from the jackknife method. In both cases, we note that the cross-correlations are consistent with zero with slight improvements when the photometric weights are accounted for.
+Moreover, we investigate the two-point cross-correlations of the galaxy number density and the orthogonal systematic parameters $\{\mathbf{S}_{\perp, i}\}_{i=1}^{N_{pix}}$ as a function of angular separation. In Figure~\ref{fig:cross-correlation}, the cross-correlations between the galaxy number density in the third redshift bin ($z_{\rm red} \in [0.45, 0.6]$) and  the systematic vector $S_{\perp}^{(9)}$ with the largest correlation with the observed density (see Figure~\ref{fig:sys_ng_correlation}) is shown in two cases: the case where we include the systematic weights (shown in blue) and where we do not include the systematic weights (shown in red). The width of the bands represent the 68\% uncertainties obtained from the jackknife method. In both cases, we note that the cross-correlations are consistent with zero with slight improvements when the photometric weights are accounted for.
 
 Alternatively, one can use self organizing maps (SOM, \citealt{kohonen1997}) for learning the systematic galaxy density modes due the variable survey properties and then generating a set of organized randoms mimicking the galaxy depletion pattern across the survey footprint. We have also tested this method and we found that this method works best in correcting the systematic depletion in a galaxy sample with a higher number density than the galaxy sample in our study. 
 
@@ -623,7 +633,7 @@ We have not explored the effect of various observing conditions on the distribut
 
 \subsection{Theory}
 
-Assuming a local deterministic linear galaxy bias, the galaxy overdensity $\delta_g$ is related to the matter overdensity $\delta_m$ through a linear relation: $\delta_g = b_g \delta_m$, where the parameter $b_g$ is the linear bias parameter. Such assumption is expected to hold on sufficiently large scales \citep[e.g.][]{Kravtsov1999}, whereas on small scales, the nonlinear structure formation is best described by the more sophisticated halo model \citep[e.g. ][]{hand2017,vakili_hahn}.
+Assuming a local deterministic linear galaxy bias, the galaxy overdensity $\delta_g$ is related to the matter overdensity $\delta_m$ through a linear relation: $\delta_g = b_g \delta_m$, where the parameter $b_g$ is the linear bias parameter. Such assumption is expected to hold on sufficiently large scales \citep[e.g.][]{Kravtsov1999, marian2015}, whereas on small scales, the nonlinear structure formation is best described by the more sophisticated halo model \citep[e.g. ][]{berlind2002,cooray2002,zehavi2011,hand2017,vakili_hahn}.
 
 Assuming a nonlinear matter power-spectrum $P_{\delta}(k,z)$, and a galaxy population described by linear bias of $b_g$, and redshift distribution of $n_g(z)$, one can predict the angular two-point correlation function $w_{g}(\theta)$. Under the Limber, flat-sky approximations (\citealt{limber1961, loverde2008, kilbinger2017, kitching2017}), the angular clustering $w_g(\theta)$ is given by:
 
@@ -637,7 +647,7 @@ where $\chi_{\rm c}$ is the comoving distance, $P_{\rm NL}$ is the analytical no
 We calculate the theoretical prediction (\ref{eq:clustering_theory}) for all four tomographic bins in our galaxy sample with their corresponding linear bias parameters $\{b^{(i)}_{g}\}_{i=1}^{4}$ and redshift distributions $\{n^{(i)}_{g}(z)\}_{i=1}^{4}$.
 
 Assuming a fixed cosmology, we aim to estimate the linear bias parameters $\{b^{(i)}_{g}\}_{i=1}^{4}$ by fitting the theoretical prediction (\ref{eq:clustering_theory}) to the angular clustering measurements provided in Section~\ref{sec:measurement}. It is worth noting that one major source of systematic in this theoretical prediction is the uncertainty on the mean of the redshift distributions $\{n_{g}^{(i)}(z)\}_{i=1}^{4}$. In order to mitigate the impact of such systematic, we assume that the estimated redshift distribution at each tomographic bin $n_{g}^{(i)}(z)$ is effectively given by shifting the underlying unbiased redshift distribution $n_{g, \rm true}^{(i)}(z - \delta z^{(i)})$, where the parameter $\delta z^{(i)}$ is the uncertainty on the mean of the redshift distribution of $i$-th redshift bin. In Section~\ref{sec:inference} we will 
-discuss how the the uncertainty over the mean of the redshift distribution can be estimated. When reporting the constraints on the galaxy bias parameters, we marginalize over the redshift uncertainties. 
+discuss how the uncertainty over the mean of the redshift distribution can be estimated. When reporting the constraints on the galaxy bias parameters, we marginalize over the redshift uncertainties. 
 
 \subsection{Clustering measurements}\label{sec:measurement}
 
@@ -774,15 +784,15 @@ Turning our attention to the dense sample, we find that the passive evolution mo
 \end{figure*}
 
 
-%\begin{figure}
-%\includegraphics[width=\columnwidth]{figures_tmp/joint_estimate_converged.png}
-%\caption{ Joint constraints on the linear galaxy bias and photo-z shift parameters shown for the dense sample (blue contours) and the luminous sample (red contour). } 
-%\label{fig:joint_estimate}
-%\end{figure}
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures_tmp/joint_estimate.png}
+\caption{ Joint constraints on the linear galaxy bias and photo-z shift parameters shown for the redshift bins constructed with the dense sample (blue contours) and the last redshift bin which is constructed from the luminous sample (red contour).} 
+\label{fig:joint_estimate}
+\end{figure}
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures_tmp/b_estimate_boxed.png}
-\caption{ Redshift-dependence of the estimated linear galaxy bias shown for the dense sample (blue) and the luminous sample (red). The boxes mark the 68\% and the 95\% confidence intervals over the marginalized distribution over bias parameters.} 
+\caption{ Redshift-dependence of the estimated linear galaxy bias shown for the dense sample (blue) and the luminous sample (red). The boxes mark the 68\% and the 95\% confidence intervals over the marginalized distribution over bias parameters. The solid (dashed) lines show the predictions of the passive evolution model of \citet{Fry1996} given the bias constraints in the three redshift bins (in the last redshift bin) for each galaxy sample.} 
 \label{fig:b_estimate}
 \end{figure}
 
